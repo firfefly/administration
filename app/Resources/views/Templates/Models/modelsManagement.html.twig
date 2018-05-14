@@ -1,0 +1,56 @@
+{% extends 'Templates/base.html.twig' %}
+{% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+{% endblock %}
+{% block menu %}
+    {{ parent() }}
+    <h1 class="titre_form"> {% if brand is not null %} Les réalisations de {{brand.getName()}} {% endif %} </h1>
+<hr align="left" class="séparateur">
+{% endblock %}
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <button class="fas fas fa-plus" id="addButton" onclick="{ document.location.href ='{{path('modelDetails',{'modelIdSlug': 'null'})}}'; }"> Ajouter</button>
+        <table>
+            <body>
+                <tr>
+                    <th> Titre </th>
+                    <th> Description </th>
+                    <th> Plans </th>
+                    <th> Image </th>
+                    <th> Propriétés </th>
+                </tr>
+                {% if modelsList is not same as(null) %}
+                    {% for model in modelsList %}
+                        <tr>
+                            <td> {{model.getTitle()}} </td>
+                            <td>
+                                {%if (model.getDescription())|length > 150 %}
+                                   </p> {{ model.getDescription()|striptags|slice(0,150)}}[...] </p>
+                                {% else %}
+                                    {{model.getDescription()}}
+                                {% endif %}
+                            </td>
+                            <td> {{model.getPlans()}} </td>
+                            <td>
+                                {{ model.getImages()}}
+                      {#          {% set lastCharacter = model.getTitle()|trim('Villa ') %}
+                                {% set url = 'http://localhost/'~brand.getDir()~'/img/models/Villa%20'~lastCharacter~'/'~brand.getName()~lastCharacter %}
+                                <img src={{url}} alt='{{brand.getName()~lastCharacter}}'>#}
+                            </td>
+                            <td> {{model.getProperties()}} </td>
+                            <td>
+                                <a class="fas fa-eye" href ='{{brand.getUrl()}}/models/details/?id={{model.getId()}}' target="_blank"></a>
+                                <a class="fas fa-edit" href='{{path('modelDetails',{'modelIdSlug':model.getId()})}}'></a>
+                                <button class="fas fa-times-circle" onclick="if (confirm('Etes vous sur de vouloir supprimer cette réalisation ?')){ document.location.href ='{{path('modelRemove',{'modelId':model.getId()})}}'; }"></button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </body>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

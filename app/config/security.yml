@@ -1,0 +1,53 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+#framework:
+#        csrf_protection: ~
+
+security:
+
+    # https://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        main:
+            entity:
+                class: AppBundle\Entity\User
+                #property: username
+                # if you're using multiple entity managers
+                # manager_name: customer
+    firewalls:
+
+#        secured_area:
+#            form_login:
+#                csrf_token_generator: security.csrf.token_manager
+#                csrf_parameter: _csrf_security_token
+#                csrf_token_id: a_private_string
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern : ^/
+            anonymous: ~
+            provider: main
+            logout_on_user_change: true
+            form_login:
+                login_path: login
+                check_path: login
+#                csrf_token_generator: security.csrf.token_manager
+#                csrf_parameter: _csrf_security_token
+#                csrf_token_id: a_private_string
+                default_target_path: index
+                always_use_default_target_path: true
+            logout:
+                path:   /logout
+                target: /login
+
+    access_control:
+                - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+                - { path: ^/inscription, roles: ROLE_ADMIN }
+                - { path: ^/, roles: ROLE_USER }

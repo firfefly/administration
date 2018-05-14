@@ -1,0 +1,45 @@
+{% extends 'Templates/base.html.twig' %}
+{% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+{% endblock %}
+{% block menu %}
+    {{ parent() }}
+    <h1 class="titre_form"> {% if brand is not null %}<p> Les agences {{brand.getName()}} </p>{% endif %} </h1>
+<hr align="left" class="séparateur">
+{% endblock %}
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <button class="fas fas fa-plus" id="addButton" onclick="{ document.location.href ='{{path('agencyDetails',{'agencyIdSlug': 'null'})}}'; }"> Ajouter</button>
+        <table>
+            <body>
+                <tr>
+                    <th> Zip-code </th>
+                    <th> Ville </th>
+                    <th> Code du département </th>
+                    <th> Adresse </th>
+                    <th> Numéro de téléphone </th>
+                </tr>
+                {% if agenciesList is not same as(null) %}
+                    {% for agency in agenciesList %}
+                        <tr>
+                            <td> {{agency.getZipCode()}} </td>
+                            <td> {{agency.getCity()}} </td>
+                            <td> {{agency.getDepartmentCode()}} </td>
+                            <td> {{agency.getAddress()}} </td>
+                            <td> {{agency.getPhoneNumber()}} </td>
+                            <td>
+                                <a class="fas fa-eye" href ='{{brand.getUrl()}}/votre_agence_{{brand.getName()}}?id={{agency.getId()}}' target="_blank"></a>
+                                <a class="fas fa-edit" href='{{path('agencyDetails',{'agencyIdSlug':agency.getId()})}}'></a>
+                                <button class="fas fa-times-circle" onclick="if (confirm('Etes vous sur de vouloir supprimer cette agence ?')){ document.location.href ='{{path('agencyRemove',{'agencyId':agency.getId()})}}'; }"></button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </body>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Administration{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-theme.min.css')}}" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+    {% endblock %}
+    {#{% block javascripts %}
+        <script type="text/javascript" src="{{asset('js/fonctionsComposition.js')}}"></script>
+    {% endblock %}#}
+</head>
+{% block menu %}
+<header>
+    <nav>
+        <h1 class="welcome"> Bienvenue sur l'application d'administration des sites du groupe Avenir </h1>
+        <ul>
+        {% if is_granted('ROLE_ADMIN') is same as(true) %}
+            <a class="registration" href="{{path('inscription')}}"> Inscription</a>
+        {% endif %}
+        <a class="logout" href="{{path('logout')}}"><span class="fas fa-sign-out-alt"></span> Déconnexion</a>
+        </ul>
+            <div id="barre_menu">
+                <ul>
+                    <li><a class="navMenu" href="{{path('index')}}"> accueil</a></li>
+                    <li><a class="navMenu" href="{{path('news')}}"> gérer des actualités</a></li>
+                    <li><a class="navMenu" href="{{path('agencies')}}"> gérer des agences</a></li>
+                    <li><a class="navMenu" href="{{path('departments')}}"> gérer des départements</a></li>
+                    <li><a class="navMenu" href="{{path('sliders')}}"> ajouter des sliders</a></li>
+                    <li><a class="navMenu" href="{{path('models')}}"> ajouter des réalisations</a></li>
+                    <li><a class="navMenu" href="{{path('reviews')}}"> ajouter un témoignage</a></li>
+                </ul>
+            </div>
+
+    </nav>
+</header>
+{% endblock %}
+{% block body %}
+<body class="container-fluid">
+</body>
+{% endblock %}
+{% block footer %}
+    <footer class="footer">
+
+    </footer>
+{% endblock %}
+</html>

@@ -1,0 +1,56 @@
+{% extends 'Templates/base.html.twig' %}
+{% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+{% endblock %}
+{% block menu %}
+    {{ parent() }}
+    <h1 class="titre_form"> {% if brand is not null %} Les sliders {{brand.getName()}} {% endif %} </h1>
+<hr align="left" class="séparateur">
+{% endblock %}
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <button class="fas fas fa-plus" id="addButton" onclick="{ document.location.href ='{{path('sliderDetails',{'sliderIdSlug': 'null'})}}'; }"> Ajouter</button>
+        <table>
+            <body>
+                <tr>
+                    <th> Image </th>
+                    <th> Alt </th>
+                    <th> Slogan </th>
+                    <th> Titre </th>
+                    <th> Texte </th>
+                    <th> Lien du bouton 1 </th>
+                    <th> Texte du bouton 1 </th>
+                    <th> Lien du bouton 2 </th>
+                    <th> Texte du bouton 2 </th>
+                </tr>
+                {% if slidersList is not same as(null) %}
+                    {% for slider in slidersList %}
+                        <tr>
+                            <td>
+                                {% set url = 'http://localhost/'~brand.getDir()~'/img/slider/'~slider.getImage() %}
+                                <img src={{url}} alt='{{slider.getImage()}}'>
+                            </td>
+                            <td> {{ slider.getAlt() }} </td>
+                            <td> {{ slider.getSlogan() }} </td>
+                            <td> {{ slider.getTitle() }} </td>
+                            <td> {{ slider.getText() }} </td>
+                            <td> {{ slider.getActionLink1() }} </td>
+                            <td> {{ slider.getActionText1() }} </td>
+                            <td> {{ slider.getActionLink2() }} </td>
+                            <td> {{ slider.getActionText2() }} </td>
+                            <td>
+                                <a class="fas fa-eye" href ='{{brand.getUrl()}}img/slider/{{slider.getImage()}}' target="_blank"></a>
+                                <a class="fas fa-edit" href='{{path('sliderDetails',{'sliderIdSlug':slider.getId()})}}'></a>
+                                <button class="fas fa-times-circle" onclick="if (confirm('Etes vous sur de vouloir supprimer ce slider ?')){ document.location.href ='{{path('sliderRemove',{'sliderId':slider.getId()})}}'; }"></button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </body>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

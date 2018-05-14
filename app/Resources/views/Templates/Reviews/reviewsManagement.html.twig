@@ -1,0 +1,59 @@
+{% extends 'Templates/base.html.twig' %}
+{% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+{% endblock %}
+{% block menu %}
+    {{ parent() }}
+    <h1 class="titre_form"> {% if brand is not null %} Les avis {{brand.getName()}} {% endif %} </h1>
+<hr align="left" class="séparateur">
+{% endblock %}
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <button class="fas fas fa-plus" id="addButton" onclick="{ document.location.href ='{{path('reviewDetails',{'reviewIdSlug': 'null'})}}'; }"> Ajouter</button>
+        <table>
+            <body>
+                <tr>
+                    <th> Texte </th>
+                    <th> Qui ? </th>
+                    <th> Image 1 </th>
+                    <th> Image 2 </th>
+                    <th> Date </th>
+                    <th> Note </th>
+                </tr>
+                {% if reviewsList is not same as(null) %}
+                    {% for review in reviewsList %}
+                        <tr>
+                            <td>
+                                {%if (review.getText())|length > 150 %}
+                                   </p> {{ review.getText()|striptags|slice(0,150)}}[...] </p>
+                                {% else %}
+                                    {{review.getText()}}
+                                {% endif %}
+                            </td>
+                            <td> {{ review.getWho() }} </td>
+                            <td>
+                                {% set url1 = 'http://localhost/'~brand.getDir()~'/img/reviews/'~review.getImage1() %}
+                                <img src={{url1}} alt='{{review.getImage1()}}'>
+                            </td>
+                            <td>
+                                {% set url2 = 'http://localhost/'~brand.getDir()~'/img/reviews/'~review.getImage2() %}
+                                <img src={{url2}} alt='{{review.getImage2()}}'>
+                            </td>
+                            <td> {{review.getDate().date|date("d-m-Y")}} </td>
+                            <td> {{ review.getMark() }} </td>
+                            <td>
+                                <a class="fas fa-eye" href ='{{brand.getUrl()}}/reviews/main' target="_blank"></a>
+                                <a class="fas fa-edit" href='{{path('reviewDetails',{'reviewIdSlug':review.getId()})}}'></a>
+                                <button class="fas fa-times-circle" onclick="if (confirm('Etes vous sur de vouloir supprimer cet avis ?')){ document.location.href ='{{path('reviewRemove',{'reviewId':review.getId()})}}'; }"></button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </body>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
