@@ -32,21 +32,24 @@ class SecurityController extends Controller
      */
     public function inscriptionUser(Request $request,UserPasswordEncoderInterface $encoder)
     {
+        $bag = new \AppBundle\Services\Bag('choosenBrand');
+        $brand = $bag->get('brand');
+
         $em = $this->getDoctrine()->getManager();
 
         $user = new User();
         $user->setRoles(array('ROLE_USER'));
         $user->setIsActive(1);
 
-        $form = $this->createForm(SecurityType::class, null, array());
+        $form = $this->createForm(SecurityType::class, $user, array());
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $user = $form->getData();
             $plainPassword = $user->getPassword();
             $encoded = $encoder->encodePassword($user, $plainPassword);
-            $user = $form->getData();
             $user->setPassword($encoded);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -56,7 +59,8 @@ class SecurityController extends Controller
         }
 
         return $this->render('Templates/security/inscription.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'brand' => $brand,
         ));
     }
 

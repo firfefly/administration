@@ -16,6 +16,7 @@ class BrandsController extends Controller
     public function SelectABrandAction(Request $request)
     {
         $bag = new \AppBundle\Services\Bag('choosenBrand');
+        $brand = $bag->get('brand');
 
         $form = $this->createForm(BrandType::class, null, array(
                 ));
@@ -36,7 +37,7 @@ class BrandsController extends Controller
             ));
         }
         return $this->render('Templates/Index/index.html.twig', array(
-                'brand' => null,
+                'brand' => $brand,
                 'form' => $form->createView(),
             ));
 

@@ -26,13 +26,17 @@
         </ul>
             <div id="barre_menu">
                 <ul>
-                    <li><a class="navMenu" href="{{path('index')}}"> accueil</a></li>
-                    <li><a class="navMenu" href="{{path('news')}}"> gérer des actualités</a></li>
-                    <li><a class="navMenu" href="{{path('agencies')}}"> gérer des agences</a></li>
-                    <li><a class="navMenu" href="{{path('departments')}}"> gérer des départements</a></li>
-                    <li><a class="navMenu" href="{{path('sliders')}}"> ajouter des sliders</a></li>
-                    <li><a class="navMenu" href="{{path('models')}}"> ajouter des réalisations</a></li>
-                    <li><a class="navMenu" href="{{path('reviews')}}"> ajouter un témoignage</a></li>
+                    {% if brand is not same as (null) %}
+                        <li><a class="navMenu" href="{{path('index')}}"> accueil</a></li>
+                        <li><a class="navMenu" href="{{path('news')}}"> gérer des actualités</a></li>
+                        <li><a class="navMenu" href="{{path('agencies')}}"> gérer des agences</a></li>
+                        <li><a class="navMenu" href="{{path('departments')}}"> gérer des départements</a></li>
+                        <li><a class="navMenu" href="{{path('sliders')}}"> ajouter des sliders</a></li>
+                        <li><a class="navMenu" href="{{path('models')}}"> ajouter des réalisations</a></li>
+                        <li><a class="navMenu" href="{{path('reviews')}}"> ajouter un témoignage</a></li>
+                    {% else %}
+                        <li><a class="navMenu" href="{{path('index')}}"> accueil</a></li>
+                    {% endif %}
                 </ul>
             </div>
 
