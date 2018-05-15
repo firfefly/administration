@@ -21,7 +21,7 @@ footer.footer {
     color: white;
     text-align: center;
     font-weight: bold;
-    /*    font-size: 2em;*/
+    font-size: 2.3em;
 }
 
 .titre_form
@@ -137,21 +137,7 @@ header ul
     padding-left: 0px;
 }
 
-header li
-{
-    text-decoration: none;
-    background-color: #525252;
-    height: auto;
-    width: 14%;
-    display:inline-block;
-    margin: 0;
-    text-align: center;
-    list-style-type:none;
-    font-family: 'Open Sans Condensed', sans-serif;
-    /*    border-style: solid;
-    border-width: 1px;*/
-    padding: 0.5em;
-}
+
 
 li
 {
@@ -160,12 +146,12 @@ li
     width: 14%;
     display:inline-block;
     margin: 0;
+    height: auto;
     text-align: center;
-    /* background-color: #67AFBA; */
     list-style-type:none;
     font-family: 'Open Sans Condensed', sans-serif;
-    /*    border-style: solid;
-    border-width: 1px;*/
+    padding: 0.5em;
+    border-collapse: collapse;
 }
 
 header li:hover
@@ -177,9 +163,8 @@ header li:hover
 
 header ul li a
 {
-    /* left:0; */
-    /* display:inline-block; */
     float:top;
+    color: #ffffff;
 }
 
 .connexion
@@ -198,6 +183,7 @@ header ul li a
     background-color: #525252;
     padding-left: 1em;
     padding-right: 1em;
+    width: auto;
 }
 
 .logout
@@ -211,12 +197,28 @@ header ul li a
     background-color: #525252;
     padding-left: 1em;
     padding-right: 1em;
+    width: auto;
+}
+
+li.active {
+    background-color: red;
+    cursor: pointer;
 }
 
 .navMenu:link    {text-decoration: none;font-weight: bold;color: #ffffff;}
 .navMenu:visited {text-decoration: none;font-weight: bold;color: #ffffff;}
 .navMenu:active  {text-decoration: none; color: black; }
 .navMenu:hover   {text-decoration: none;color: #daf2de;cursor: pointer;}
+
+.registration:link    {text-decoration: none;font-weight: bold;color: #ffffff;}
+.registration:visited {text-decoration: none;font-weight: bold;color: #ffffff;}
+.registration:active  {text-decoration: none; color: black; }
+.registration:hover   {text-decoration: none;color: #daf2de;cursor: pointer;}
+
+.logout:link    {text-decoration: none;font-weight: bold;color: #ffffff;}
+.logout:visited {text-decoration: none;font-weight: bold;color: #ffffff;}
+.logout:active  {text-decoration: none; color: black; }
+.logout:hover   {text-decoration: none;color: #daf2de;cursor: pointer;}
 
 th
 {

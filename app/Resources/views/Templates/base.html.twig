@@ -10,9 +10,20 @@
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
     {% endblock %}
-    {#{% block javascripts %}
-        <script type="text/javascript" src="{{asset('js/fonctionsComposition.js')}}"></script>
-    {% endblock %}#}
+    {% block javascripts %}
+        <script type="text/javascript" src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/jquery-ui.js')}}"></script>
+        <script>
+            jQuery(function () {
+                a = document.getElementsByClassName('navMenu');
+
+                for(i=0;i<a.length;i++) {
+                    if (a[i].getAttribute("href") === document.location.pathname) {
+                        $('.navMenu').eq(i).parent().addClass('active');
+                    }
+                }});
+        </script>
+    {% endblock %}
 </head>
 {% block menu %}
 <header>
@@ -20,9 +31,9 @@
         <h1 class="welcome"> Bienvenue sur l'application d'administration des sites du groupe Avenir </h1>
         <ul>
         {% if is_granted('ROLE_ADMIN') is same as(true) %}
-            <a class="registration" href="{{path('inscription')}}"> Inscription</a>
+            <li class="registration"><a  href="{{path('inscription')}}"><span class="fas fa-sign-in-alt"></span> Inscription</a></li>
         {% endif %}
-        <a class="logout" href="{{path('logout')}}"><span class="fas fa-sign-out-alt"></span> Déconnexion</a>
+        <li class="logout"><a  href="{{path('logout')}}"><span class="fas fa-sign-out-alt"></span> Déconnexion</a></li>
         </ul>
             <div id="barre_menu">
                 <ul>

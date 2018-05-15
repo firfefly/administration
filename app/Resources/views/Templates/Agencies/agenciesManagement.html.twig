@@ -4,7 +4,7 @@
 {% endblock %}
 {% block menu %}
     {{ parent() }}
-    <h1 class="titre_form"> {% if brand is not null %}<p> Les agences {{brand.getName()}} </p>{% endif %} </h1>
+    <h1 class="titre_form"> {% if brand is not null %} Les agences {{brand.getName()}} {% endif %} </h1>
 <hr align="left" class="séparateur">
 {% endblock %}
 {% block body %}
