@@ -9,9 +9,32 @@ parameters:
     locale: fr
     reviews_directory: '/img/reviews/'
 
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
+    from_email:
+        address: noreply@grpta.fr
+        sender_name: administration
+    registration:
+        confirmation:
+            enabled: false
+#            from_email:
+#                address:        registration@example.com
+#                sender_name:    Registration
+#            template:   FOSUserBundle:Registration:email.txt.twig
+    resetting:
+        email:
+            from_email:
+                address:        resetting@grpta.fr
+                sender_name:    Resetting
+            template:   email/password_resetting.email.twig
+
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
