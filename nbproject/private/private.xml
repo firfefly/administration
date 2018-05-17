@@ -3,24 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/administration/web/app.php</file>
-            <file>file:/C:/wamp64/www/administration/src/AppBundle/Controller/SecurityController.php</file>
-            <file>file:/C:/wamp64/www/administration/web/css/main.css</file>
-            <file>file:/C:/wamp64/www/administration/app/Resources/views/Templates/Agencies/agenciesManagement.html.twig</file>
-            <file>file:/C:/wamp64/www/administration/app/config/config.yml</file>
-            <file>file:/C:/wamp64/www/administration/app/config/security.yml</file>
-            <file>file:/C:/wamp64/www/administration/app/Resources/views/Templates/base.html.twig</file>
-            <file>file:/C:/wamp64/www/administration/src/AppBundle/Entity/User.php</file>
-            <file>file:/C:/wamp64/www/administration/app/config/routing_dev.yml</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/FOSUserBundle/views/Registration/register.html.twig</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/FOSUserBundle/views/Profile/edit.html.twig</file>
             <file>file:/C:/wamp64/www/administration/app/config/parameters.yml</file>
-            <file>file:/C:/wamp64/www/administration/app/config/services.yml</file>
+            <file>file:/C:/wamp64/www/administration/app/config/config.yml</file>
             <file>file:/C:/wamp64/www/administration/app/config/routing.yml</file>
+            <file>file:/C:/wamp64/www/administration/src/AppBundle/Controller/AgenciesController.php</file>
             <file>file:/C:/wamp64/www/administration/app/config/parameters.yml.dist</file>
-            <file>file:/C:/wamp64/www/administration/app/config/config_dev.yml</file>
             <file>file:/C:/wamp64/www/administration/app/config/config_prod.yml</file>
-            <file>file:/C:/wamp64/www/administration/app/Resources/FOSUserBundle/views/layout.html.twig</file>
-            <file>file:/C:/wamp64/www/administration/app/AppKernel.php</file>
+            <file>file:/C:/wamp64/www/administration/app/config/config_dev.yml</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/views/Templates/base.html.twig</file>
             <file>file:/C:/wamp64/www/administration/app/config/config_test.yml</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/views/email/password_resetting.email.twig</file>
         </group>
     </open-files>
 </project-private>

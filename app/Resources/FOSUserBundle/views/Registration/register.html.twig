@@ -1,4 +1,4 @@
-{% extends 'Templates/base.html.twig' %}
+{% extends 'Templates/baseSubMenu.html.twig' %}
 {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
 {% endblock %}
@@ -8,34 +8,46 @@
 <hr align="left" class="séparateur">
 {% endblock %}
 {% block body %}
-{% trans_default_domain 'FOSUserBundle' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {{ parent() }}
+            </div>
+            {% trans_default_domain 'FOSUserBundle' %}
+            {% for message in app.flashes('registered') %}
+                <div class="flash-register">
+                    <p> {{ message }} <p>
+                </div>
+            {% endfor %}
+            <div class="col-md-7 col-push-5">
+                <form id="profileForm" action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
+                    <table>
+                        <tr>
+                            <td> {{ form_label (form.email) }} </td>
+                            <td> {{ form_widget (form.email) }} </td>
+                        </tr>
+                        <tr>
+                            <td> {{ form_label (form.username) }} </td>
+                            <td> {{ form_widget (form.username) }} </td>
+                        </tr>
+                        <tr>
+                            <td> {{ form_label (form.plainPassword['first']) }} </td>
+                            <td> {{ form_widget (form.plainPassword['first']) }} </td>
+                        </tr>
+                        <tr>
+                            <td> {{ form_label (form.plainPassword['second']) }} </td>
+                            <td> {{ form_widget (form.plainPassword['second']) }} </td>
+                        </tr>
 
-<form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
-    <table>
-        <tr>
-            <td> {{ form_label (form.email) }} </td>
-            <td> {{ form_widget (form.email) }} </td>
-        </tr>
-        <tr>
-            <td> {{ form_label (form.username) }} </td>
-            <td> {{ form_widget (form.username) }} </td>
-        </tr>
-        <tr>
-            <td> {{ form_label (form.plainPassword['first']) }} </td>
-            <td> {{ form_widget (form.plainPassword['first']) }} </td>
-        </tr>
-        <tr>
-            <td> {{ form_label (form.plainPassword['second']) }} </td>
-            <td> {{ form_widget (form.plainPassword['second']) }} </td>
-        </tr>
-
-    </table>
-    <div>
-        <button type="submit" value="{{ 'registration.submit'|trans }}" /> {{'registration.submit'|trans}} </button>
+                    </table>
+                    <div>
+                        <button type="submit" value="{{ 'registration.submit'|trans }}" /> {{'registration.submit'|trans}} </button>
+                    </div>
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </form>
+            </div>
+        </div>
     </div>
-    {{ form_rest(form) }}
-    {{ form_end(form) }}
-</form>
-
 {% endblock %}
 

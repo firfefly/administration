@@ -30,12 +30,8 @@
     <nav>
         <h1 class="welcome"> Bienvenue sur l'application d'administration des sites du groupe Avenir </h1>
         <ul>
-        {% if is_granted('ROLE_ADMIN') is same as(true) %}
-            <li class="registration"><a  href="{{path('fos_user_registration_register')}}"><span class="fas fa-sign-in-alt"></span> Inscription</a></li>
-        {% endif %}
-        <li class="test"><a  href="{{path('fos_user_change_password')}}"><span class="fas fa-sign-in-alt"></span> chgmnt mdp</a></li>
-        <li class="test"><a  href="{{path('fos_user_resetting_request')}}"><span class="fas fa-sign-in-alt"></span> reset mdp</a></li>
-        <li class="logout"><a  href="{{path('fos_user_security_logout')}}"><span class="fas fa-sign-out-alt"></span> Déconnexion</a></li>
+            <li class="management"><a href="{{path('fos_user_change_password')}}"><span class="fas fa-user-circle"></span> Profil</a></li>
+            <li class="logout"><a  href="{{path('fos_user_security_logout')}}"><span class="fas fa-sign-out-alt"></span> Déconnexion</a></li>
         </ul>
             <div id="barre_menu">
                 <ul>

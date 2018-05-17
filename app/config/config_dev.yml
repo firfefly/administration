@@ -40,8 +40,8 @@ monolog:
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
 swiftmailer:
-    transport:  gmail
-    host: smtp.gmail.com
-    username:
-    password:  
-    spool:     { type: memory }
+    transport:  '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    spool: { type: memory }

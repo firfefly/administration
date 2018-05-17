@@ -60,6 +60,11 @@ h1 {
     text-align: center;
 }
 
+.flash-register p{
+    text-align: center;
+    color: green;
+    font-size: 2em;
+}
 
 /*.col-md-9 h1
 {
@@ -94,40 +99,32 @@ header
 }
 
 #barre_menu
-{/* padding: 0.3em; */position: relative;margin: auto;/* height: 2em; */width: auto;background-color: #525252;/* vertical-align:  middle; */}
-
-#barre_menu2
 {
-/*    padding: 0.3em;*/
+    /* padding: 0.3em; */
     position: relative;
-    text-align: center;
-    height: auto;
-    width: 100%;
-    margin: 2em;
-
-/*    background-color: #525252;*/
-}
-
-#barre_menu2 ul
-{
-    list-style-type:none;
-    line-height: 35px;
-    font-family: 'Open Sans Condensed', sans-serif;
-}
-
-#barre_menu2 li
-{
+    margin: auto;
+    /* height: 2em; */
+    width: auto;
     background-color: #525252;
-    height: auto;
-    width: 14%;
-    display:inline-block;
+    /* vertical-align:  middle; */}
+
+#barre_menu_management {
+    list-style: none;
     margin: 0;
-    text-align: center;
-    /*background-color: #67AFBA;*/
-    list-style-type:none;
-    font-family: 'Open Sans Condensed', sans-serif;
-/*    border-style: solid;
-    border-width: 1px;*/
+    padding: 0;
+}
+
+#barre_menu_management li {
+    display: block ;
+    border: solid 1px;
+    width: 100%;
+}
+#barre_menu_management ul {
+    -webkit-padding-start: 0;
+}
+
+#profileForm {
+    padding-top: 4em;
 }
 
 header ul
@@ -154,7 +151,7 @@ li
     border-collapse: collapse;
 }
 
-header li:hover
+li:hover
 {
     text-decoration: none;
     background-color: red;
@@ -172,7 +169,7 @@ header ul li a
     margin-right:10px;
 }
 
-.registration
+.management
 {
     position: absolute;
     top: 0px;
@@ -210,10 +207,10 @@ li.active {
 .navMenu:active  {text-decoration: none; color: black; }
 .navMenu:hover   {text-decoration: none;color: #daf2de;cursor: pointer;}
 
-.registration:link    {text-decoration: none;font-weight: bold;color: #ffffff;}
-.registration:visited {text-decoration: none;font-weight: bold;color: #ffffff;}
-.registration:active  {text-decoration: none; color: black; }
-.registration:hover   {text-decoration: none;color: #daf2de;cursor: pointer;}
+.navMenuManagement:link    {text-decoration: none;font-weight: bold;color: #ffffff;}
+.navMenuManagement:visited {text-decoration: none;font-weight: bold;color: #ffffff;}
+.navMenuManagement:active  {text-decoration: none; color: black; }
+.navMenuManagement:hover   {text-decoration: none;color: #daf2de;cursor: pointer;}
 
 .logout:link    {text-decoration: none;font-weight: bold;color: #ffffff;}
 .logout:visited {text-decoration: none;font-weight: bold;color: #ffffff;}
