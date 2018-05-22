@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\BrandType;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class BrandsController extends Controller
 {
@@ -15,8 +16,7 @@ class BrandsController extends Controller
     */
     public function SelectABrandAction(Request $request)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
+        $session = new Session();
 
         $form = $this->createForm(BrandType::class, null, array(
                 ));
@@ -29,15 +29,13 @@ class BrandsController extends Controller
                     ->getManager('default')
                     ->getRepository(Brands::class)
                     ->find($choosenBrand);
-            $bag->set('brand', $brand);
-
+            $session->set('choosenBrand', $brand);
+            
             return $this->render('Templates/Index/index.html.twig', array(
-                'brand' => $bag->get('brand'),
                 'form' => $form->createView(),
             ));
         }
         return $this->render('Templates/Index/index.html.twig', array(
-                'brand' => $brand,
                 'form' => $form->createView(),
             ));
 

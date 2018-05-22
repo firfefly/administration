@@ -2,8 +2,14 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 brand_home:
-    path:     /news/
-    defaults: { _controller: AppBundle:News:displayAllNews }
+    path:     /
+    defaults: { _controller: AppBundle:Brands:SelectABrandAction }
+AppBundle_agency_view:
+  path:      /agencyDetails/{id}
+  defaults:
+    _controller: AppBundle:Agencies:agencyDetails
+  requirements:
+    id: \d+
 logout:
     path: /logout
 fos_user_security:

@@ -68,6 +68,13 @@ a {
   -moz-transition: all 0.4s;
 }
 
+#forgotPassword {
+    background-color: transparent;
+    color: black;
+    font-weight:  700;
+    font-family: Poppins-Regular, sans-serif;
+}
+
 a:focus {
 	outline: none !important;
 }

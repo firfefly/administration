@@ -1,0 +1,51 @@
+{% extends '@FOSUser/Security/login.html.twig' %}
+{% block stylesheets %}
+        {{ parent() }}
+{% endblock %}
+{% block content %}
+    {% block fos_user_content %}
+        <div class="limiter">
+            <div class="container-login100">
+                {% trans_default_domain 'FOSUserBundle' %}
+                <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+                    <form class="login100-form validate-form" action="{{ path("fos_user_resetting_reset", {'token': token}) }}" method="POST" class="fos_user_resetting_reset">
+                        {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+                        <span class="login100-form-title p-b-55">
+                            <img id="logo" src="{{asset('images/logo.png')}}" >
+                            <label id="login_label" for="fos_user_resetting_form_plainPassword_first">{{ "Nouveau mot de passe"|trans }}</label>
+                        </span>
+                        <div class="wrap-input100 validate-input m-b-16">
+                            {{ form_widget(form.plainPassword['first'], {'attr': {'class': 'input100', 'required': 'required', 'autocomplete': 'new-password', 'placeholder': 'Mot de passe'} }) }}
+                            <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <span class="lnr lnr-lock"></span>
+                            </span>
+                        </div>
+                        <div class="wrap-input100 validate-input m-b-16">
+                            {{ form_widget(form.plainPassword['second'], {'attr': {'class': 'input100', 'required': 'required', 'autocomplete': 'new-password', 'placeholder': 'Répétez le mot de passe'} }) }}
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <span class="lnr lnr-lock"></span>
+                            </span>
+                        </div>
+                        {{ form_rest(form) }}
+                        <div class="container-login100-form-btn p-t-25">
+                            <input class="login100-form-btn" type="submit" id="_submit" name="_submit" value="{{ 'resetting.reset.submit'|trans }}" />
+                        </div>
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--===============================================================================================-->
+            <script src="/administration/web/css/vendor/jquery/jquery-3.2.1.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="/administration/web/css/vendor/bootstrap/js/popper.js"></script>
+            <script src="/administration/web/css/vendor/bootstrap/js/bootstrap.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="/administration/web/css/vendor/select2/select2.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="/administration/web/js/main.js"></script>
+    {% endblock %}
+{% endblock %}

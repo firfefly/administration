@@ -1,0 +1,42 @@
+{% extends '@FOSUser/Security/login.html.twig' %}
+{% block stylesheets %}
+        {{ parent() }}
+{% endblock %}
+{% block content %}
+    {% block fos_user_content %}
+        <div class="limiter">
+            <div class="container-login100">
+                {% trans_default_domain 'FOSUserBundle' %}
+                <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+                    <form class="login100-form validate-form" action="{{ path("fos_user_resetting_send_email") }}" method="POST" class="fos_user_resetting_request">
+                        <span class="login100-form-title p-b-55">
+                            <img id="logo" src="{{asset('images/logo.png')}}" >
+                            <label id="login_label" for="username">{{ "Identification"|trans }}</label>
+                        </span>
+                        <div class="wrap-input100 validate-input m-b-16">
+                            <input class="input100" type="text" id="username" name="username" required="required" autocomplete="username" placeholder="Login ou email"/>
+                            <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <span class="lnr lnr-envelope"></span>
+                                </span>
+                        </div>
+                        <p> *Un email vous sera envoyé. </p>
+                        <div class="container-login100-form-btn p-t-25">
+                            <input class="login100-form-btn" type="submit" id="_submit" name="_submit" value="{{ 'Envoyer'|trans }}" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--===============================================================================================-->
+            <script src="/administration/web/css/vendor/jquery/jquery-3.2.1.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="/administration/web/css/vendor/bootstrap/js/popper.js"></script>
+            <script src="/administration/web/css/vendor/bootstrap/js/bootstrap.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="/administration/web/css/vendor/select2/select2.min.js"></script>
+            <!--===============================================================================================-->
+            <script src="/administration/web/js/main.js"></script>
+    {% endblock %}
+{% endblock %}

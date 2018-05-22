@@ -263,6 +263,24 @@ button
     margin-bottom: 1em;
 }
 
+#emailText {
+    text-align: center;
+}
+
+.error li {
+    text-align: center;
+    display: inline-block;
+    width: auto;
+    color:  red;
+    margin-top: -1em;
+    background-color:  white;
+}
+
+.error {
+    background-color: white;
+    margin-left: 7em;
+}
+
 #formButton
 {
     /*display: inline-block;*/

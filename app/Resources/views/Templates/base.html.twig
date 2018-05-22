@@ -34,8 +34,9 @@
             <li class="logout"><a  href="{{path('fos_user_security_logout')}}"><span class="fas fa-sign-out-alt"></span> Déconnexion</a></li>
         </ul>
             <div id="barre_menu">
+
                 <ul>
-                    {% if brand is not same as (null) %}
+                    {% if app.session.get('choosenBrand') is not same as(null) %}
                         <li><a class="navMenu" href="{{path('index')}}"> accueil</a></li>
                         <li><a class="navMenu" href="{{path('news')}}"> gérer des actualités</a></li>
                         <li><a class="navMenu" href="{{path('agencies')}}"> gérer des agences</a></li>

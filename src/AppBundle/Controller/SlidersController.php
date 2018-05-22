@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\SliderType;
 use AppBundle\Services\ImageUpload;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class SlidersController extends Controller
 {
@@ -16,10 +17,9 @@ class SlidersController extends Controller
     */
     public function displaySlidersAction(Request $request)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
 
@@ -30,7 +30,6 @@ class SlidersController extends Controller
 
         return $this->render('Templates/Sliders/slidersManagement.html.twig', array(
             'slidersList' => $slidersList,
-            'brand' => $brand,
         ));
     }
 
@@ -39,10 +38,9 @@ class SlidersController extends Controller
     */
     public function sliderDetailsAction(Request $request, $sliderIdSlug, ImageUpload $fileUploader)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
 
@@ -82,7 +80,6 @@ class SlidersController extends Controller
 
         return $this->render('Templates/Sliders/sliderDetails.html.twig', array(
             'form' => $form->createView(),
-            'brand' => $brand,
         ));
     }
 
@@ -91,10 +88,9 @@ class SlidersController extends Controller
     */
     public function removeSlidersAction(Request $request, $sliderId)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
 

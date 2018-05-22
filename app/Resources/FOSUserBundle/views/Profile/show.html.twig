@@ -1,0 +1,29 @@
+{% extends 'Templates/baseSubMenu.html.twig' %}
+{% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+{% endblock %}
+{% block menu %}
+    {{ parent() }}
+    <h1 class="titre_form"> Modification du profil </h1>
+<hr align="left" class="séparateur">
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {{ parent() }}
+            </div>
+            {% for message in app.flashes('password') %}
+                    <div class="flash-register">
+                        <p> {{ message }} <p>
+                    </div>
+                {% endfor %}
+            {% trans_default_domain 'FOSUserBundle' %}
+             <div class="col-md-7 col-push-5">
+              fezfzef
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -4,7 +4,7 @@
 {% endblock %}
 {% block menu %}
     {{ parent() }}
-    <h1 class="titre_form"> {% if brand is not null %} Les nouveautés {{brand.getName()}} {% endif %} </h1>
+    <h1 class="titre_form"> {% if app.session.get('choosenBrand') is not null %} Les nouveautés {{app.session.get('choosenBrand').getName()}} {% endif %} </h1>
 <hr align="left" class="séparateur">
 {% endblock %}
 {% block body %}
@@ -33,13 +33,13 @@
                                 {% endif %}
                             </td>
                             <td>
-                                {% set url = 'http://localhost/'~brand.getDir()~'/img/news/'~new.getImage() %}
+                                {% set url = 'http://localhost/'~app.session.get('choosenBrand').getDir()~'/img/news/'~new.getImage() %}
                                 <img src={{url}} alt='{{new.getImage()}}'>
                             </td>
                             <td> {% if new.getActive() is same as(true) %} En-ligne {% else %} Hors-ligne {% endif %}  </td>
                             <td> {{new.getDate().date|date("d-m-Y")}} </td>
                             <td>
-                                <a class="fas fa-eye" href ='{{brand.getUrl()}}news/details/?id={{new.getId()}}' target="_blank"></a>
+                                <a class="fas fa-eye" href ='{{app.session.get('choosenBrand').getUrl()}}news/details/?id={{new.getId()}}' target="_blank"></a>
                                 <a class="fas fa-edit" href='{{path('newDetails',{'newIdSlug':new.getId()})}}'></a>
                                 <button class="fas fa-times-circle" onclick="if (confirm('Etes vous sur de vouloir supprimer cette nouveauté ?')){ document.location.href ='{{path('newRemove',{'newId':new.getId()})}}'; }"></button>
                             </td>

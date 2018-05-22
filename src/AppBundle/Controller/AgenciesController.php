@@ -8,19 +8,20 @@ use AppBundle\Entity\Agencies;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\AgencyType;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class AgenciesController extends Controller
 {
+
     /**
     * @Route("/agencies/", name="agencies")
     */
     public function displayAllAgenciesAction()
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
-             return $this->redirectToRoute('index');
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
+            return $this->redirectToRoute('index');
         }
 
         $agencies = $this->getDoctrine()
@@ -30,7 +31,6 @@ class AgenciesController extends Controller
 
         return $this->render('Templates/Agencies/agenciesManagement.html.twig', array(
             'agenciesList' => $agencies,
-            'brand' => $brand,
         ));
     }
 
@@ -39,12 +39,12 @@ class AgenciesController extends Controller
     */
     public function agencyDetailsAction(Request $request, $agencyIdSlug)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
+
         if ((int) $agencyIdSlug > 0) {
             $agency = $this->getDoctrine()
                         ->getManager($brand->getName())
@@ -87,7 +87,6 @@ class AgenciesController extends Controller
             'form' => $form->createView(),
             'agencyIdSlug' => $agencyIdSlug,
             'agency' => $agency,
-            'brand' => $brand,
         ));
     }
 
@@ -97,12 +96,12 @@ class AgenciesController extends Controller
     */
     public function removeAgenciesAction($agencyId)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
+
         $em = $this->getDoctrine()
             ->getManager($brand->getName());
 

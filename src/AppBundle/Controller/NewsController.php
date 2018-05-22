@@ -9,6 +9,7 @@ use AppBundle\Services\ImageUpload;
 use AppBundle\Form\NewType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class NewsController extends Controller
 {
@@ -17,11 +18,10 @@ class NewsController extends Controller
     */
     public function displayAllNewsAction(Request $request)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
-             return $this->redirectToRoute('index');
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
+            return $this->redirectToRoute('index');
         }
 
         $news = $this->getDoctrine()
@@ -31,7 +31,6 @@ class NewsController extends Controller
 
         return $this->render('Templates/News/newsManagement.html.twig', array(
             'newsList' => $news,
-            'brand' => $brand,
         ));
     }
 
@@ -40,12 +39,12 @@ class NewsController extends Controller
     */
     public function newDetailsAction(Request $request, $newIdSlug)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
+
         if ((int) $newIdSlug > 0) {
             $new = $this->getDoctrine()
                     ->getManager($brand->getName())
@@ -84,7 +83,6 @@ class NewsController extends Controller
                     return $this->render("Templates/News/newDetails.html.twig", array(
                         'form' => $form->createView(),
                         'new' => $new,
-                        'brand' => $brand,
                         'errors' => $errors,
                     ));
                 } else {
@@ -106,8 +104,7 @@ class NewsController extends Controller
         return $this->render('Templates/News/newDetails.html.twig', array(
             'form' => $form->createView(),
             'new' => $new,
-            'brand' => $brand,
-        ));
+s        ));
     }
 
 
@@ -116,12 +113,12 @@ class NewsController extends Controller
     */
     public function removeNewsAction(Request $request, $newId)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
+
         $em = $this->getDoctrine()
             ->getManager($brand->getName());
 

@@ -4,7 +4,7 @@
 {% endblock %}
 {% block menu %}
     {{ parent() }}
-    <h1 class="titre_form"> {% if brand is not null %} Les départements {{brand.getName()}} {% endif %} </h1>
+    <h1 class="titre_form"> {% if app.session.get('choosenBrand') is not null %} Les départements {{app.session.get('choosenBrand').getName()}} {% endif %} </h1>
 <hr align="left" class="séparateur">
 {% endblock %}
 {% block body %}

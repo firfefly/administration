@@ -45,6 +45,9 @@
                     </div>
                     {{ form_rest(form) }}
                     {{ form_end(form) }}
+                    <ul class="error">
+                        <li>{{ form_errors(form.plainPassword['first']) }} </li>
+                    </ul>
                 </form>
             </div>
         </div>

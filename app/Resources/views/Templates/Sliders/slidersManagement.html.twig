@@ -4,7 +4,7 @@
 {% endblock %}
 {% block menu %}
     {{ parent() }}
-    <h1 class="titre_form"> {% if brand is not null %} Les sliders {{brand.getName()}} {% endif %} </h1>
+    <h1 class="titre_form"> {% if app.session.get('choosenBrand') is not null %} Les sliders {{app.session.get('choosenBrand').getName()}} {% endif %} </h1>
 <hr align="left" class="séparateur">
 {% endblock %}
 {% block body %}
@@ -29,7 +29,7 @@
                     {% for slider in slidersList %}
                         <tr>
                             <td>
-                                {% set url = 'http://localhost/'~brand.getDir()~'/img/slider/'~slider.getImage() %}
+                                {% set url = 'http://localhost/'~app.session.get('choosenBrand').getDir()~'/img/slider/'~slider.getImage() %}
                                 <img src={{url}} alt='{{slider.getImage()}}'>
                             </td>
                             <td> {{ slider.getAlt() }} </td>
@@ -41,7 +41,7 @@
                             <td> {{ slider.getActionLink2() }} </td>
                             <td> {{ slider.getActionText2() }} </td>
                             <td>
-                                <a class="fas fa-eye" href ='{{brand.getUrl()}}img/slider/{{slider.getImage()}}' target="_blank"></a>
+                                <a class="fas fa-eye" href ='{{app.session.get('choosenBrand').getUrl()}}img/slider/{{slider.getImage()}}' target="_blank"></a>
                                 <a class="fas fa-edit" href='{{path('sliderDetails',{'sliderIdSlug':slider.getId()})}}'></a>
                                 <button class="fas fa-times-circle" onclick="if (confirm('Etes vous sur de vouloir supprimer ce slider ?')){ document.location.href ='{{path('sliderRemove',{'sliderId':slider.getId()})}}'; }"></button>
                             </td>

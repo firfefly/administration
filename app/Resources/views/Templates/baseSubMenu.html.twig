@@ -10,11 +10,10 @@
     <hr align="left" class="séparateur">
     <div id="barre_menu_management">
         <ul>
-            <li><a class="navMenuManagement" href="{{path('fos_user_change_password')}}"><span class="fas fa-sign-in-alt"></span> chgmnt mdp</a></li>
-            <li><a class="navMenuManagement" href="{{path('fos_user_resetting_request')}}"><span class="fas fa-sign-in-alt"></span> reset mdp</a></li>
-            <li><a class="navMenuManagement" href="{{path('fos_user_profile_edit')}}"><span class="fas fa-sign-in-alt"></span> edit profile</a></li>
+            <li><a class="navMenuManagement" href="{{path('fos_user_change_password')}}"><span class="fas fa-key"></span> Modifier mon mot de passe</a></li>
+            <li><a class="navMenuManagement" href="{{path('fos_user_profile_edit')}}"><span class="far fa-edit"></span> Modifier mon profil</a></li>
             {% if is_granted('ROLE_ADMIN') is same as(true) %}
-                <li><a class="navMenuManagement" href="{{path('fos_user_registration_register')}}"><span class="fas fa-sign-in-alt"></span> Inscription</a></li>
+                <li><a class="navMenuManagement" href="{{path('fos_user_registration_register')}}"><span class="far fa-plus-square"></span> Créer un compte</a></li>
             {% endif %}
         </ul>
     </div>

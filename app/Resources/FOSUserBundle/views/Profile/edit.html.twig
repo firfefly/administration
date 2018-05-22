@@ -35,6 +35,9 @@
                     </div>
                     {{ form_rest(form) }}
                     {{ form_end(form) }}
+                    <ul class="error">
+                        <li>{{ form_errors(form.current_password) }} </li>
+                    </ul>
                 </form>
             </div>
         </div>

@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\ReviewType;
 use AppBundle\Services\ImageUpload;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class ReviewsController extends Controller
 {
@@ -16,10 +17,9 @@ class ReviewsController extends Controller
     */
     public function displayReviewsAction(Request $request)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
 
@@ -30,7 +30,6 @@ class ReviewsController extends Controller
 
         return $this->render('Templates/Reviews/reviewsManagement.html.twig', array(
             'reviewsList' => $reviewsList,
-            'brand' => $brand,
         ));
     }
 
@@ -39,10 +38,9 @@ class ReviewsController extends Controller
     */
     public function reviewDetailsAction(Request $request, $reviewIdSlug, ImageUpload $fileUploader)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
 
@@ -90,7 +88,6 @@ class ReviewsController extends Controller
 
         return $this->render('Templates/Reviews/reviewDetails.html.twig', array(
             'form' => $form->createView(),
-            'brand' => $brand,
         ));
     }
 
@@ -99,10 +96,9 @@ class ReviewsController extends Controller
     */
     public function removeNewsAction(Request $request, $reviewId)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
 

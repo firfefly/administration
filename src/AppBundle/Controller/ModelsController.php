@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Filesystem\Filesystem;
 use AppBundle\Services\ImageUpload;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class ModelsController extends Controller
 {
@@ -17,10 +18,9 @@ class ModelsController extends Controller
     */
     public function displayModelsAction(Request $request)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
 
@@ -31,7 +31,6 @@ class ModelsController extends Controller
 
         return $this->render('Templates/Models/modelsManagement.html.twig', array(
             'modelsList' => $modelsList,
-            'brand' => $brand,
         ));
     }
 
@@ -41,10 +40,9 @@ class ModelsController extends Controller
     */
     public function modelDetailsAction(Request $request, $modelIdSlug)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
 
@@ -79,7 +77,6 @@ class ModelsController extends Controller
                     if ($exists === true) {
                         return $this->render('Templates/Models/modelDetails.html.twig', array(
                             'form' => $form->createView(),
-                            'brand' => $brand,
                             'error' => 'Ce dossier existe déjà. Changez le titre',
                         ));
                     } else {
@@ -103,7 +100,6 @@ class ModelsController extends Controller
                     $fileSystem->remove($newDir);
                     return $this->render('Templates/Models/modelDetails.html.twig', array(
                             'form' => $form->createView(),
-                            'brand' => $brand,
                             'error' => 'Vous devez choisir une image lorsque vous créez un nouveau model',
                         ));
                 }
@@ -118,7 +114,6 @@ class ModelsController extends Controller
 
         return $this->render('Templates/Models/modelDetails.html.twig', array(
             'form' => $form->createView(),
-            'brand' => $brand,
         ));
     }
 
@@ -167,12 +162,12 @@ class ModelsController extends Controller
     */
     public function removeModelsAction(Request $request, $modelId)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
+
         $em = $this->getDoctrine()
             ->getManager($brand->getName());
 

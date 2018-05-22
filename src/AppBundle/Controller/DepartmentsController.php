@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\DepartmentSelectType;
 use AppBundle\Form\DepartmentEditType;
 use AppBundle\Services\ImageUpload;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DepartmentsController extends Controller
 {
@@ -17,10 +18,9 @@ class DepartmentsController extends Controller
     */
     public function selectDepartmentAction(Request $request)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
 
@@ -66,7 +66,6 @@ class DepartmentsController extends Controller
 
         return $this->render('Templates/Departments/departmentsManagement.html.twig', array(
             'form' => $form->createView(),
-            'brand' => $brand,
         ));
     }
 
@@ -76,10 +75,9 @@ class DepartmentsController extends Controller
     */
     public function departmentDetailsAction(Request $request, $codeDpt)
     {
-        $bag = new \AppBundle\Services\Bag('choosenBrand');
-        $brand = $bag->get('brand');
-
-        if ($brand === null || $brand->getName() === null) {
+        $session = new Session();
+        $brand = $session->get('choosenBrand');
+        if ($brand === null) {
             return $this->redirectToRoute('index');
         }
 
@@ -117,7 +115,6 @@ class DepartmentsController extends Controller
         return $this->render('Templates/Departments/departmentDetails.html.twig', array(
             'form' => $form->createView(),
             'department' => $department,
-            'brand' => $brand,
         ));
 
 

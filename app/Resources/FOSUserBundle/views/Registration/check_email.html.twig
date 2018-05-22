@@ -1,0 +1,24 @@
+{% extends 'Templates/baseSubMenu.html.twig' %}
+{% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+{% endblock %}
+{% block menu %}
+    {{ parent() }}
+    <h1 class="titre_form"> Inscription </h1>
+<hr align="left" class="séparateur">
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {{ parent() }}
+            </div>
+            {% trans_default_domain 'FOSUserBundle' %}
+            {% for message in app.flashes('registered') %}
+                <div class="flash-register">
+                    <p> {{ message }} <p>
+                </div>
+            {% endfor %}
+            <p id="emailText">Un e-mail a été envoyé à l'adresse "{{user.email}}". Il contient un lien d'activation.</p>
+
+{% endblock %}

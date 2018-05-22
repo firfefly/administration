@@ -8,7 +8,9 @@ imports:
 parameters:
     locale: fr
     reviews_directory: '/img/reviews/'
-
+sensio_framework_extra:
+    request:
+        converters: true
 fos_user:
     db_driver: orm
     firewall_name: main
@@ -22,7 +24,7 @@ fos_user:
         confirmation:
             enabled: true
             from_email:
-                address:        registration@example.com
+                address:        registration@grpta.com
                 sender_name:    Registration
 #            template:   FOSUserBundle:Registration:email.txt.twig
     resetting:
