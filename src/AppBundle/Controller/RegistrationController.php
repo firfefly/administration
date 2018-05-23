@@ -1,19 +1,21 @@
 <?php
-// src/Acme/UserBundle/Controller/RegistrationController.php
+// src/AppBundle/Controller/RegistrationController.php
 
-namespace Acme\UserBundle\Controller;
+namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 
 class RegistrationController extends BaseController
 {
-    public function registerAction()
+    public function registerAction(Request $request)
     {
+        print_r('fezzfe');die();
         $form = $this->container->get('fos_user.registration.form');
         $formHandler = $this->container->get('fos_user.registration.form.handler');
         $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
-        print_r($form);die();
+        print_r($confirmationEnabled);die();
         $process = $formHandler->process($confirmationEnabled);
         if ($process) {
             $user = $form->getData();
@@ -39,21 +41,17 @@ class RegistrationController extends BaseController
             return new RedirectResponse($url);
         }
 
-        var_dump($url);die();
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
         ));
     }
-
-
-
-
 
     /**
      * Tell the user to check their email provider.
      */
     public function checkEmailAction(Request $request)
     {
+        var_dump($request);die();
         $bag = new \AppBundle\Services\Bag('choosenBrand');
         $brand = $bag->get('brand');
         $this->get('session')->getFlashBag()->clear();
@@ -90,6 +88,7 @@ class RegistrationController extends BaseController
      */
     public function confirmAction(Request $request, $token)
     {
+        var_dump($token);die();
         $userManager = $this->userManager;
 
         $user = $userManager->findUserByConfirmationToken($token);
@@ -121,6 +120,7 @@ class RegistrationController extends BaseController
      */
     public function confirmedAction(Request $request)
     {
+        var_dump($request);die();
         $bag = new \AppBundle\Services\Bag('choosenBrand');
         $brand = $bag->get('brand');
 

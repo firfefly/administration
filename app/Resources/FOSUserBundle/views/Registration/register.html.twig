@@ -19,6 +19,12 @@
                     <p> {{ message }} <p>
                 </div>
             {% endfor %}
+            {% for message in app.flashes('fos_user_success') %}
+                <div class="flash-register">
+                    <p> {{ message }} <p>
+                </div>
+            {% endfor %}
+
             <div class="col-md-7 col-push-5">
                 <form id="profileForm" action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
                     <table>
