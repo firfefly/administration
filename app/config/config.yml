@@ -70,55 +70,55 @@ doctrine:
         default_connection:    default
         connections:
             default:
-                dbname:           administration
-                user:             root
-                password:         null
-                host:             localhost
+                dbname:           '%database_name%'
+                user:             '%database_user%'
+                password:         '%database_password%'
+                host:             '%database_host%'
                 charset: utf8mb4
                 default_table_options:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
             tradybel:
-                dbname:           ored_tradybel
-                user:             root
-                password:         null
-                host:             localhost
+                dbname:           '%dbnameTradybel%'
+                user:             '%database_user%'
+                password:         '%database_password%'
+                host:             '%database_host%'
                 charset: utf8mb4
                 default_table_options:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
             creavilla:
-                dbname:           ored_creavilla
-                user:             root
-                password:         null
-                host:             localhost
+                dbname:           '%dbnameCreavilla%'
+                user:             '%database_user%'
+                password:         '%database_password%'
+                host:             '%database_host%'
                 charset: utf8mb4
                 default_table_options:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
             esquiss:
-                dbname:           ored_esquiss
-                user:             root
-                password:         null
-                host:             localhost
+                dbname:           '%dbnameEsquiss%'
+                user:             '%database_user%'
+                password:         '%database_password%'
+                host:             '%database_host%'
                 charset: utf8mb4
                 default_table_options:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
             maisonscevi:
-                dbname:           ored_maisonscevi
-                user:             root
-                password:         null
-                host:             localhost
+                dbname:           '%dbnameMaisonsCevi%'
+                user:             '%database_user%'
+                password:         '%database_password%'
+                host:             '%database_host%'
                 charset: utf8mb4
                 default_table_options:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
             voiron:
-                dbname:           ored_voiron
-                user:             root
-                password:         null
-                host:             localhost
+                dbname:           '%dbnameMaisonsCevi%'
+                user:             '%database_user%'
+                password:         '%database_password%'
+                host:             '%database_host%'
                 charset: utf8mb4
                 default_table_options:
                     charset: utf8mb4
