@@ -1,11 +1,5 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    {% extends 'Templates/base.html.twig' %}
-    {% block menu %}
-                {{parent()}}
-{#                <h1 class="titre_form">Page not found</h1>#}
-            </div>
-        </section>
-    {% endblock %}
+<link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
     {% block body %}
         <div class="row">
             <div class="col-sm-12">

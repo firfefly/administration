@@ -19,6 +19,7 @@
                     <p> {{ message }} <p>
                 </div>
             {% endfor %}
-            <p id="emailText">Un e-mail a été envoyé à l'adresse "{{user.email}}". Il contient un lien d'activation.</p>
-
+            {#<p id="emailText">Un e-mail a été envoyé à l'adresse "{{user.email}}". Il contient un lien d'activation.</p>#}
+            <p class="flash"> Un e-mail a été envoyé à l'adresse "{{user.email}}". </p>
+            <p class="flash"> Il contient un lien d'activation.</p>
 {% endblock %}
