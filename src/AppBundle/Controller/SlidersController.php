@@ -34,7 +34,7 @@ class SlidersController extends Controller
     }
 
     /**
-    * @Route("/sliderDetails/{sliderIdSlug}", name="sliderDetails")
+    * @Route("/sliders/sliderDetails/{sliderIdSlug}", name="sliderDetails")
     */
     public function sliderDetailsAction(Request $request, $sliderIdSlug, ImageUpload $fileUploader)
     {
@@ -84,7 +84,7 @@ class SlidersController extends Controller
     }
 
     /**
-    * @Route("/sliderRemove/{sliderId}", name="sliderRemove")
+    * @Route("/sliders/sliderRemove/{sliderId}", name="sliderRemove")
     */
     public function removeSlidersAction(Request $request, $sliderId)
     {

@@ -1,0 +1,43 @@
+{% extends 'Templates/base.html.twig' %}
+{% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+{% endblock %}
+{% block menu %}
+    {{ parent() }}
+    <h1 class="titre_form"> {% if app.session.get('choosenBrand') is not null %} Les secteurs de {{app.session.get('choosenBrand').getName()}} {% endif %} </h1>
+<hr align="left" class="séparateur">
+{% endblock %}
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <button class="fas fas fa-plus" id="addButton" onclick="{ document.location.href ='{{path('sectorDetails',{'sectorIdSlug': 'null'})}}'; }"> Ajouter</button>
+        <table>
+            <body>
+                <tr>
+                    <th> Code </th>
+                    <th> Agence </th>
+                </tr>
+                {% if sectorsList is not same as(null) %}
+                    {% for sector in sectorsList %}
+                        <tr>
+                            {% if retrieveAgenciesZipFile[sector.getId()] is same as ('false') %}
+                                <td style="background-color:red;"></td>
+                            {% else %}
+                                <td style="background-color:green;"></td>
+                            {% endif %}
+                            <td> {{sector.getCode()}} </td>
+                            <td> {{retrieveAgenciesNameById[sector.getAgencyId()]}} </td>
+                            <td>
+                                <a class="fas fa-edit" href='{{path('sectorDetails',{'sectorIdSlug':sector.getId()})}}'></a>
+                                <button class="fas fa-times-circle" onclick="if (confirm('Etes vous sur de vouloir supprimer ce secteur ?')){ document.location.href ='{{path('sectorRemove',{'sectorId':sector.getId()})}}'; }"></button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </body>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

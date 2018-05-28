@@ -37,15 +37,21 @@
 
                 <ul>
                     {% if app.session.get('choosenBrand') is not same as(null) %}
-                        <li><a class="navMenu" href="{{path('index')}}"> accueil</a></li>
-                        <li><a class="navMenu" href="{{path('news')}}"> gérer des actualités</a></li>
-                        <li><a class="navMenu" href="{{path('agencies')}}"> gérer des agences</a></li>
-                        <li><a class="navMenu" href="{{path('departments')}}"> gérer des départements</a></li>
-                        <li><a class="navMenu" href="{{path('sliders')}}"> ajouter des sliders</a></li>
-                        <li><a class="navMenu" href="{{path('models')}}"> ajouter des réalisations</a></li>
-                        <li><a class="navMenu" href="{{path('reviews')}}"> ajouter un témoignage</a></li>
+                        <li><a class="navMenu" href="{{path('index')}}"> Accueil</a></li>
+                        {% if is_granted('ROLE_COMMUNICATION') %}
+
+                            <li><a class="navMenu" href="{{path('news')}}"> Les actualités</a></li>
+                            <li><a class="navMenu" href="{{path('sliders')}}"> Les sliders</a></li>
+                            <li><a class="navMenu" href="{{path('models')}}"> Les réalisations</a></li>
+                            <li><a class="navMenu" href="{{path('reviews')}}"> Les témoignages</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_COMMERCIAL') %}
+                            <li><a class="navMenu" href="{{path('agencies')}}"> Les agences</a></li>
+                            <li><a class="navMenu" href="{{path('departments')}}"> Les départements</a></li>
+                            <li><a class="navMenu" href="{{path('sectors')}}"> Les secteurs</a></li>
+                        {% endif %}
                     {% else %}
-                        <li><a class="navMenu" href="{{path('index')}}"> accueil</a></li>
+                        <li><a class="navMenu" href="{{path('index')}}"> Accueil</a></li>
                     {% endif %}
                 </ul>
             </div>

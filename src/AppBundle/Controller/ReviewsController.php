@@ -34,7 +34,7 @@ class ReviewsController extends Controller
     }
 
     /**
-    * @Route("/reviewDetails/{reviewIdSlug}", name="reviewDetails")
+    * @Route("/reviews/reviewDetails/{reviewIdSlug}", name="reviewDetails")
     */
     public function reviewDetailsAction(Request $request, $reviewIdSlug, ImageUpload $fileUploader)
     {
@@ -92,7 +92,7 @@ class ReviewsController extends Controller
     }
 
     /**
-    * @Route("/reviewRemove/{reviewId}", name="reviewRemove")
+    * @Route("/reviews/reviewRemove/{reviewId}", name="reviewRemove")
     */
     public function removeNewsAction(Request $request, $reviewId)
     {

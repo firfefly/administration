@@ -1,55 +1,51 @@
 {% extends 'Templates/base.html.twig' %}
 {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
 {% endblock %}
 {% block menu %}
     {{ parent() }}
     <h1 class="titre_form"> {% if app.session.get('choosenBrand') is not null %} Les nouveautés {{app.session.get('choosenBrand').getName()}} {% endif %} </h1>
     <hr align="left" class="séparateur">
-
 {% endblock %}
-
 {% block body %}
 {% if error is defined %}
     <div class="error">
         <p> {{error}} </p>
     </div>
 {% endif %}
-<div class="row">
-    <div class="col-sm-12">
-        <form method="POST" enctype="multipart/form-data">
-            <table id="formTab">
-                <tr>
-                    <td> {{ form_label (form.title) }} </td>
-                    <td> {{ form_widget (form.title) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.description) }} </td>
-                    <td> {{ form_widget (form.description) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.plans) }} </td>
-                    <td> {{ form_widget (form.plans) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.imageindir) }} </td>
-                    <td> {{ form_widget (form.imageindir) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.properties) }} </td>
-                    <td> {{ form_widget (form.properties) }} </td>
-                </tr>
-            </table>
-            <div id="formButton">
-                {{ form_widget(form.save) }}
-                <button type="button" id="backButton" onclick="document.location.replace('{{path('models')}}');"> Retour</button>
-            </div>
-            {{ form_rest(form) }}
-            {{ form_end(form) }}
-        </form>
-
-
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="POST" enctype="multipart/form-data">
+                <table id="formTab">
+                    <tr>
+                        <td> {{ form_label (form.title) }} </td>
+                        <td> {{ form_widget (form.title) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.description) }} </td>
+                        <td> {{ form_widget (form.description) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.plans) }} </td>
+                        <td> {{ form_widget (form.plans) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.imageindir) }} </td>
+                        <td> {{ form_widget (form.imageindir) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.properties) }} </td>
+                        <td> {{ form_widget (form.properties) }} </td>
+                    </tr>
+                </table>
+                <div id="formButton">
+                    {{ form_widget(form.save) }}
+                    <button type="button" id="backButton" onclick="document.location.replace('{{path('models')}}');"> Retour</button>
+                </div>
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}
 

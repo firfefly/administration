@@ -44,6 +44,10 @@
                             <td> {{ form_label (form.plainPassword['second']) }} </td>
                             <td> {{ form_widget (form.plainPassword['second']) }} </td>
                         </tr>
+                        <tr>
+                            <td> {{ form_label (form.roles) }} </td>
+                            <td> {{ form_widget (form.roles) }} </td>
+                        </tr>
 
                     </table>
                     <div>
@@ -52,6 +56,10 @@
                     {{ form_rest(form) }}
                     {{ form_end(form) }}
                     <ul class="error">
+                        <li>{{ form_errors(form.email) }} </li>
+                        <li>{{ form_errors(form.username) }} </li>
+                        <li>{{ form_errors(form.plainPassword) }} </li>
+                        <li>{{ form_errors(form.roles) }} </li>
                         <li>{{ form_errors(form) }} </li>
                     </ul>
                 </form>

@@ -36,7 +36,7 @@ class ModelsController extends Controller
 
 
     /**
-    * @Route("/modelDetails/{modelIdSlug}", name="modelDetails")
+    * @Route("/models/modelDetails/{modelIdSlug}", name="modelDetails")
     */
     public function modelDetailsAction(Request $request, $modelIdSlug)
     {
@@ -158,7 +158,7 @@ class ModelsController extends Controller
 
 
     /**
-    * @Route("/modelRemove/{modelId}", name="modelRemove")
+    * @Route("/models/modelRemove/{modelId}", name="modelRemove")
     */
     public function removeModelsAction(Request $request, $modelId)
     {

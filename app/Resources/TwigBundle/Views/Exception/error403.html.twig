@@ -1,19 +1,11 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     {% block menu %}
-{#                {{parent()}}#}
-<link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
-{#                <h1 class="titre_form">Page not found</h1>#}
-            </div>
-        </section>
+        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
     {% endblock %}
     {% block body %}
-    {#    <div class="row">
-            <div class="col-sm-12">#}
-                <p id="error403">
-                    Vous n'avez pas les autorisations pour accéder à cette page. </br>
-                    <a href="{{ path('index') }}"><b>retournez à la page d'accueil</b></a>. </p>
-                <p id="error"> Erreur 403 </p>
-        {#    </div>
-        </div>#}
+        <p id="error403">
+            Vous n'avez pas les autorisations pour accéder à cette page. </br>
+            <a href="{{ path('index') }}"><b>retournez à la page d'accueil</b></a>. </p>
+        <p id="error"> Erreur 403 </p>
     {% endblock %}
 {% endif %}

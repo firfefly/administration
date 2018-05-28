@@ -4,7 +4,7 @@
 {% endblock %}
 {% block menu %}
     {{ parent() }}
-    <h1 class="titre_form"> Inscription </h1>
+    <h1 class="titre_form"> Inscription validée</h1>
 <hr align="left" class="séparateur">
 {% endblock %}
 {% block body %}
@@ -14,11 +14,6 @@
                 {{ parent() }}
             </div>
             {% trans_default_domain 'FOSUserBundle' %}
-            {% for message in app.flashes('registered') %}
-                <div class="flash-register">
-                    <p> {{ message }} <p>
-                </div>
-            {% endfor %}
-            <p class="flash"> Un e-mail a été envoyé à l'adresse "{{user.email}}". </p>
-            <p class="flash"> Il contient un lien d'activation.</p>
+            <p class="flash"> Votre compte est maintenant actif. </p>
+            <p class="flash"> Pensez à modifier votre mot de passe.</p>
 {% endblock %}

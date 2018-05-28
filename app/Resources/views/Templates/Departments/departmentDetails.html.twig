@@ -6,52 +6,49 @@
     {{ parent() }}
     <h1 class="titre_form"> {% if app.session.get('choosenBrand') is not null %} Les départements de {{app.session.get('choosenBrand').getName()}} {% endif %} </h1>
     <hr align="left" class="séparateur">
-
 {% endblock %}
-
 {% block body %}
+    <div class="row">
+        <div class="col-sm-12">
 
-<div class="row">
-    <div class="col-sm-12">
+            <form method="POST" enctype="multipart/form-data">
+                <table id="formTab">
 
-        <form method="POST" enctype="multipart/form-data">
-            <table id="formTab">
+                        <tr>
+                            <td> {{ form_label (form.name)}} </td>
+                            <td> {{ form_widget (form.name)}} </td>
+                        </tr>
+                        <tr>
+                            <td> {{ form_label (form.code)}} </td>
+                            <td> {{ form_widget (form.code)}} </td>
+                        </tr>
+                        <tr>
+                            <td> {{ form_label (form.description)}} </td>
+                            <td> {{ form_widget (form.description)}} </td>
+                        </tr>
+                        <tr>
+                            <td> {{ form_label (form.short_description)}} </td>
+                            <td> {{ form_widget (form.short_description)}} </td>
+                        </tr>
+                        <tr>
+                            <td> {{ form_label (form.image)}} </td>
+                            <td> {{ form_widget (form.image) }} </td>
+                        </tr>
+                        <tr>
+                            <td> {{ form_label (form.active)}} </td>
+                            <td> {{ form_widget (form.active)}} </td>
+                        </tr>
+                    </table>
+                <div id="formButton">
+                    {{ form_widget(form.save) }}
+                    <button type="button" id="backButton" onclick="document.location.replace('{{path('departments')}}');"> Retour</button>
+                    <a class="fas fa-eye" href ='{{app.session.get('choosenBrand').getUrl()}}constructeur_maison?code={{ department.getCode()}}' target="_blank"></a>
+                </div>
 
-                    <tr>
-                        <td> {{ form_label (form.name)}} </td>
-                        <td> {{ form_widget (form.name)}} </td>
-                    </tr>
-                    <tr>
-                        <td> {{ form_label (form.code)}} </td>
-                        <td> {{ form_widget (form.code)}} </td>
-                    </tr>
-                    <tr>
-                        <td> {{ form_label (form.description)}} </td>
-                        <td> {{ form_widget (form.description)}} </td>
-                    </tr>
-                    <tr>
-                        <td> {{ form_label (form.short_description)}} </td>
-                        <td> {{ form_widget (form.short_description)}} </td>
-                    </tr>
-                    <tr>
-                        <td> {{ form_label (form.image)}} </td>
-                        <td> {{ form_widget (form.image) }} </td>
-                    </tr>
-                    <tr>
-                        <td> {{ form_label (form.active)}} </td>
-                        <td> {{ form_widget (form.active)}} </td>
-                    </tr>
-                </table>
-            <div id="formButton">
-                {{ form_widget(form.save) }}
-                <button type="button" id="backButton" onclick="document.location.replace('{{path('departments')}}');"> Retour</button>
-                <a class="fas fa-eye" href ='{{app.session.get('choosenBrand').getUrl()}}constructeur_maison?code={{ department.getCode()}}' target="_blank"></a>
-            </div>
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
 
-            {{ form_rest(form) }}
-            {{ form_end(form) }}
-
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}

@@ -1,37 +1,27 @@
 {% extends 'Templates/base.html.twig' %}
 {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
 {% endblock %}
 {% block menu %}
     {{ parent() }}
     <h1 class="titre_form"> {% if app.session.get('choosenBrand') is not null %} Les départements {{app.session.get('choosenBrand').getName()}} {% endif %} </h1>
-<hr align="left" class="séparateur">
+    <hr align="left" class="séparateur">
 {% endblock %}
 {% block body %}
-
-<div class="row">
-    <div class="col-sm-12">
-        <table>
-            <form method="POST">
-                <tr>
-                    <td>
-                        {{ form_label (form.code) }}
-                    </td>
-                    <td>
-                        {{ form_widget (form.code) }}
-                    </td>
-
-                    <td>
-                    {{ form_widget(form.save) }}
-                    </td>
-                    {{ form_rest(form) }}
-                    {{ form_end(form) }}
-                </tr>
-            </form>
-        </table>
-
-
+    <div class="row">
+        <div class="col-sm-12">
+            <table>
+                <form method="POST">
+                    <tr>
+                        <td> {{ form_label (form.code) }} </td>
+                        <td> {{ form_widget (form.code) }} </td>
+                        <td> {{ form_widget(form.save) }} </td>
+                        {{ form_rest(form) }}
+                        {{ form_end(form) }}
+                    </tr>
+                </form>
+            </table>
+        </div>
     </div>
-</div>
 
 {% endblock %}

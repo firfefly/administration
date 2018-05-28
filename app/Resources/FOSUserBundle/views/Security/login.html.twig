@@ -1,6 +1,5 @@
 {% block body %}
     {% block stylesheets %}
-
             <link rel="icon" type="image/png" href="{{asset('images/icons/favicon.ico')}}"/>
             <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
             <link rel="stylesheet" type="text/css" href="{{asset('css/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
@@ -9,11 +8,9 @@
             <link rel="stylesheet" type="text/css" href="{{asset('css/vendor/css-hamburgers/hamburgers.min.css')}}">
             <link rel="stylesheet" type="text/css" href="{{asset('css/vendor/select2/select2.min.css')}}">
             <link rel="stylesheet" type="text/css" href="{{asset('css/util.css')}}">
-    {#        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />#}
             <link rel="stylesheet" type="text/css" href="{{asset('css/main_1.css')}}" />
     {% endblock %}
     {% block content %}
-
         {% block fos_user_content %}
             {% if error %}
                 <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>

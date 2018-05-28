@@ -35,7 +35,7 @@ class AgenciesController extends Controller
     }
 
     /**
-    * @Route("/agencyDetails/{agencyIdSlug}", name="agencyDetails")
+    * @Route("/agencies/agencyDetails/{agencyIdSlug}", name="agencyDetails")
     */
     public function agencyDetailsAction(Request $request, $agencyIdSlug)
     {
@@ -61,6 +61,7 @@ class AgenciesController extends Controller
 
         $retrieveDepartmentsIdAndName = [];
 
+        $retrieveDepartmentsIdAndName[''] = ' ';
         foreach($departmentsList as $department) {
             $retrieveDepartmentsIdAndName[$department->getName() . '(' . $department->getCode() . ')'] = $department->getCode();
         }
@@ -92,7 +93,7 @@ class AgenciesController extends Controller
 
 
     /**
-    * @Route("/agencyRemove/{agencyId}", name="agencyRemove")
+    * @Route("/agencies/agencyRemove/{agencyId}", name="agencyRemove")
     */
     public function removeAgenciesAction($agencyId)
     {

@@ -1,11 +1,12 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-<link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
     {% block body %}
         <div class="row">
             <div class="col-sm-12">
                 <p id="error404">
                     La page demandée n'a pas pu être localisée. </br>
-                    Vérifiez les fautes d'ortographes dans l'URL ou <a href="{{ path('index') }}"><b>retournez à la page d'accueil</b></a>. </p>
+                    Vérifiez les fautes d'ortographes dans l'URL ou <a href="{{ path('index') }}"><b>retournez à la page d'accueil</b></a>.
+                </p>
                 <p id="error"> Erreur 404 </p>
             </div>
         </div>

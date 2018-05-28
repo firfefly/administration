@@ -71,7 +71,7 @@ class DepartmentsController extends Controller
 
 
     /**
-    * @Route("/departmentDetails/{codeDpt}", name="departmentDetails")
+    * @Route("/departments/departmentDetails/{codeDpt}", name="departmentDetails")
     */
     public function departmentDetailsAction(Request $request, $codeDpt)
     {

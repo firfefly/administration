@@ -35,7 +35,7 @@ class NewsController extends Controller
     }
 
     /**
-    * @Route("/newDetails/{newIdSlug}", name="newDetails")
+    * @Route("/news/newDetails/{newIdSlug}", name="newDetails")
     */
     public function newDetailsAction(Request $request, $newIdSlug)
     {
@@ -104,12 +104,12 @@ class NewsController extends Controller
         return $this->render('Templates/News/newDetails.html.twig', array(
             'form' => $form->createView(),
             'new' => $new,
-s        ));
+        ));
     }
 
 
     /**
-    * @Route("/newRemove/{newId}", name="newRemove")
+    * @Route("/news/newRemove/{newId}", name="newRemove")
     */
     public function removeNewsAction(Request $request, $newId)
     {

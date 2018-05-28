@@ -3,16 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/administration/app/config/parameters.yml</file>
-            <file>file:/C:/wamp64/www/administration/app/Resources/views/Templates/Agencies/agenciesManagement.html.twig</file>
-            <file>file:/C:/wamp64/www/administration/app/Resources/views/Templates/Agencies/agencyDetails.html.twig</file>
+            <file>file:/C:/wamp64/www/administration/web/app.php</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/FOSUserBundle/views/Profile/show.html.twig</file>
+            <file>file:/C:/wamp64/www/administration/web/css/main.css</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/TwigBundle/Views/Exception/error404.html.twig</file>
             <file>file:/C:/wamp64/www/administration/app/config/config.yml</file>
-            <file>file:/C:/wamp64/www/administration/src/AppBundle/Controller/AgenciesController.php</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/views/Templates/base.html.twig</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/TwigBundle/Views/Exception/error403.html.twig</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/FOSUserBundle/views/Profile/edit.html.twig</file>
+            <file>file:/C:/wamp64/www/administration/app/config/routing_dev.yml</file>
+            <file>file:/C:/wamp64/www/administration/app/config/parameters.yml</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/FOSUserBundle/views/Registration/check_email.html.twig</file>
             <file>file:/C:/wamp64/www/administration/app/config/routing.yml</file>
-            <file>file:/C:/wamp64/www/administration/app/config/config_dev.yml</file>
-            <file>file:/C:/wamp64/www/administration/app/config/config_prod.yml</file>
-            <file>file:/C:/wamp64/www/administration/src/AppBundle/Controller/BrandsController.php</file>
-            <file>file:/C:/wamp64/www/administration/app/config/config_test.yml</file>
+            <file>file:/C:/wamp64/www/administration/app/config/parameters.yml.dist</file>
+            <file>file:/C:/wamp64/www/administration/composer.json</file>
+            <file>file:/C:/wamp64/www/administration/app/Resources/TwigBundle/Views/Exception/error.html.twig</file>
         </group>
     </open-files>
 </project-private>

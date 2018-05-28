@@ -10,7 +10,7 @@ body {
 
 footer.footer {
     margin-top: 10%;
-    height: 15%;
+    height: 10%;
 }
 
 .welcome
@@ -103,10 +103,19 @@ header
     /* padding: 0.3em; */
     position: relative;
     margin: auto;
-    /* height: 2em; */
+    height: auto;
     width: auto;
     background-color: #525252;
-    /* vertical-align:  middle; */}
+    /* vertical-align:  middle; */
+    }
+
+#barre_menu li {
+}
+
+#barre_menu ul {
+    display:  flex;
+    justify-content:  space-around;
+}
 
 #barre_menu_management {
     list-style: none;
@@ -124,7 +133,7 @@ header
 }
 
 #profileForm {
-    padding-top: 4em;
+    padding-top: 2em;
 }
 
 header ul
@@ -132,6 +141,7 @@ header ul
     list-style-type:none;
     font-family: 'Open Sans Condensed', sans-serif;
     padding-left: 0px;
+    /* height: auto; */
 }
 
 
@@ -200,6 +210,12 @@ header ul li a
 li.active {
     background-color: red;
     cursor: pointer;
+}
+
+a.navMenu {
+    display: flex;
+    justify-content: space-around;
+    /* padding: 0.5em; */
 }
 
 .navMenu:link    {text-decoration: none;font-weight: bold;color: #ffffff;}

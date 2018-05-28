@@ -21,8 +21,8 @@ fos_user:
         address: noreply@grpta.fr
         sender_name: administration
     registration:
-#        form:
-#            type: AppBundle\Form\Type\RegistrationFormType
+        form:
+            type: AppBundle\Form\RegistrationType
         confirmation:
             enabled: true
             from_email:
