@@ -70,16 +70,16 @@ doctrine:
         default_connection:    default
         connections:
             default:
-                dbname:           '%database_name%'
-                user:             '%database_user%'
-                password:         '%database_password%'
+                dbname:           '%database_name_admin%'
+                user:             '%database_user_admin%'
+                password:         '%database_password_admin%'
                 host:             '%database_host%'
                 charset: utf8mb4
                 default_table_options:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
             tradybel:
-                dbname:           '%dbnameTradybel%'
+                dbname:           '%database_name_tradybel%'
                 user:             '%database_user%'
                 password:         '%database_password%'
                 host:             '%database_host%'
@@ -88,7 +88,7 @@ doctrine:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
             creavilla:
-                dbname:           '%dbnameCreavilla%'
+                dbname:           '%database_name_creavilla%'
                 user:             '%database_user%'
                 password:         '%database_password%'
                 host:             '%database_host%'
@@ -97,7 +97,7 @@ doctrine:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
             esquiss:
-                dbname:           '%dbnameEsquiss%'
+                dbname:           '%database_name_esquiss%'
                 user:             '%database_user%'
                 password:         '%database_password%'
                 host:             '%database_host%'
@@ -106,7 +106,7 @@ doctrine:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
             maisonscevi:
-                dbname:           '%dbnameMaisonsCevi%'
+                dbname:           '%database_name_maisonscevi%'
                 user:             '%database_user%'
                 password:         '%database_password%'
                 host:             '%database_host%'
@@ -115,7 +115,7 @@ doctrine:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
             voiron:
-                dbname:           '%dbnameMaisonsCevi%'
+                dbname:           '%database_name_voiron%'
                 user:             '%database_user%'
                 password:         '%database_password%'
                 host:             '%database_host%'
