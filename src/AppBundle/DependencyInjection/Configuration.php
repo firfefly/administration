@@ -10,13 +10,12 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/configuration.html}
  */
-class Configuration implements ConfigurationInterface
-{
+class Configuration implements ConfigurationInterface {
+
     /**
      * {@inheritdoc}
      */
-    public function getConfigTreeBuilder()
-    {
+    public function getConfigTreeBuilder() {
         die('fsfsdf');
 
         $treeBuilder = new TreeBuilder();
@@ -25,8 +24,9 @@ class Configuration implements ConfigurationInterface
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
-print_r($treeBuilder);
-die();
+        print_r($treeBuilder);
+        die();
         return $treeBuilder;
     }
+
 }

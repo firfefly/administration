@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="news")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NewsRepository")
  */
-class News
-{
+class News {
+
     /**
      * @var int
      *
@@ -71,8 +71,7 @@ class News
      */
     private $date;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->date = new \DateTime("now");
     }
 
@@ -175,5 +174,5 @@ class News
     public function setDate($date) {
         $this->date = $date;
     }
-}
 
+}

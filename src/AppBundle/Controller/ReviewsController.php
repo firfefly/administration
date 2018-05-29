@@ -10,13 +10,12 @@ use AppBundle\Form\ReviewType;
 use AppBundle\Services\ImageUpload;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class ReviewsController extends Controller
-{
+class ReviewsController extends Controller {
+
     /**
-    * @Route("/reviews/", name="reviews")
-    */
-    public function displayReviewsAction(Request $request)
-    {
+     * @Route("/reviews/", name="reviews")
+     */
+    public function displayReviewsAction(Request $request) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -24,20 +23,19 @@ class ReviewsController extends Controller
         }
 
         $reviewsList = $this->getDoctrine()
-                        ->getManager($brand->getName())
-                        ->getRepository(Reviews::class)
-                        ->findAll();
+                ->getManager($brand->getName())
+                ->getRepository(Reviews::class)
+                ->findAll();
 
         return $this->render('Templates/Reviews/reviewsManagement.html.twig', array(
-            'reviewsList' => $reviewsList,
+                    'reviewsList' => $reviewsList,
         ));
     }
 
     /**
-    * @Route("/reviews/reviewDetails/{reviewIdSlug}", name="reviewDetails")
-    */
-    public function reviewDetailsAction(Request $request, $reviewIdSlug, ImageUpload $fileUploader)
-    {
+     * @Route("/reviews/reviewDetails/{reviewIdSlug}", name="reviewDetails")
+     */
+    public function reviewDetailsAction(Request $request, $reviewIdSlug, ImageUpload $fileUploader) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -45,10 +43,10 @@ class ReviewsController extends Controller
         }
 
         if ((int) $reviewIdSlug > 0) {
-        $review = $this->getDoctrine()
-                        ->getManager($brand->getName())
-                        ->getRepository(Reviews::class)
-                        ->find($reviewIdSlug);
+            $review = $this->getDoctrine()
+                    ->getManager($brand->getName())
+                    ->getRepository(Reviews::class)
+                    ->find($reviewIdSlug);
         } else {
             $review = new Reviews();
         }
@@ -64,14 +62,14 @@ class ReviewsController extends Controller
             $file1 = $review->getImage1();
             $file2 = $review->getImage2();
 
-            if($file1 === null) {
+            if ($file1 === null) {
                 $review->setImage1($image1);
             } else {
                 $fileName1 = $fileUploader->upload($brand, $file1);
                 $review->setImage1($fileName1);
             }
 
-            if($file2 === null) {
+            if ($file2 === null) {
                 $review->setImage2($image2);
             } else {
                 $fileName2 = $fileUploader->upload($brand, $file2);
@@ -83,19 +81,17 @@ class ReviewsController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('reviews');
-
         }
 
         return $this->render('Templates/Reviews/reviewDetails.html.twig', array(
-            'form' => $form->createView(),
+                    'form' => $form->createView(),
         ));
     }
 
     /**
-    * @Route("/reviews/reviewRemove/{reviewId}", name="reviewRemove")
-    */
-    public function removeNewsAction(Request $request, $reviewId)
-    {
+     * @Route("/reviews/reviewRemove/{reviewId}", name="reviewRemove")
+     */
+    public function removeNewsAction(Request $request, $reviewId) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -103,14 +99,15 @@ class ReviewsController extends Controller
         }
 
         $em = $this->getDoctrine()
-            ->getManager($brand->getName());
+                ->getManager($brand->getName());
 
         $review = $em->getRepository(Reviews::class)
-            ->find($reviewId);
+                ->find($reviewId);
 
         $em->remove($review);
         $em->flush();
 
         return $this->redirectToRoute('reviews');
     }
+
 }

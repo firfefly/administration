@@ -1,54 +1,53 @@
 {% extends 'Templates/base.html.twig' %}
 {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
 {% endblock %}
 {% block menu %}
     {{ parent() }}
     <h1 class="titre_form"> {% if app.session.get('choosenBrand') is not null %} Les nouveautés {{app.session.get('choosenBrand').getName()}} {% endif %} </h1>
-<hr align="left" class="séparateur">
+    <hr align="left" class="séparateur">
 {% endblock %}
 {% block body %}
-
-<div class="row">
-    <div class="col-sm-12">
-        <button class="fas fas fa-plus" id="addButton" onclick="{ document.location.href ='{{path('newDetails',{'newIdSlug': 'null'})}}'; }"> Ajouter</button>
-        <table>
-            <body>
-                <tr>
-                    <th> Titre </th>
-                    <th> Texte </th>
-                    <th> Image </th>
-                    <th> Visibilité </th>
-                    <th> Date </th>
-                </tr>
-                {% if newsList is not same as(null) %}
-                    {% for new in newsList %}
-                        <tr>
-                            <td> {{new.getTitle()}} </td>
-                            <td>
-                                {%if (new.getText())|length > 150 %}
-                                   </p> {{ new.getText()|slice(0,150)}}[...] </p>
-                                {% else %}
-                                    {{new.getText()}}
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% set url = 'http://localhost/'~app.session.get('choosenBrand').getDir()~'/img/news/'~new.getImage() %}
-                                <img src={{url}} alt='{{new.getImage()}}'>
-                            </td>
-                            <td> {% if new.getActive() is same as(true) %} En-ligne {% else %} Hors-ligne {% endif %}  </td>
-                            <td> {{new.getDate().date|date("d-m-Y")}} </td>
-                            <td>
-                                <a class="fas fa-eye" href ='{{app.session.get('choosenBrand').getUrl()}}news/details/?id={{new.getId()}}' target="_blank"></a>
-                                <a class="fas fa-edit" href='{{path('newDetails',{'newIdSlug':new.getId()})}}'></a>
-                                <button class="fas fa-times-circle" onclick="if (confirm('Etes vous sur de vouloir supprimer cette nouveauté ?')){ document.location.href ='{{path('newRemove',{'newId':new.getId()})}}'; }"></button>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-            </body>
-        </table>
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="fas fas fa-plus" id="addButton" onclick="{ document.location.href ='{{path('newDetails',{'newIdSlug': 'null'})}}'; }"> Ajouter</button>
+            <table>
+                <body>
+                    <tr>
+                        <th> Titre </th>
+                        <th> Texte </th>
+                        <th> Image </th>
+                        <th> Visibilité </th>
+                        <th> Date </th>
+                    </tr>
+                    {% if newsList is not same as(null) %}
+                        {% for new in newsList %}
+                            <tr>
+                                <td> {{new.getTitle()}} </td>
+                                <td>
+                                    {%if (new.getText())|length > 150 %}
+                                       </p> {{ new.getText()|slice(0,150)}}[...] </p>
+                                    {% else %}
+                                        {{new.getText()}}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% set url = 'http://localhost/'~app.session.get('choosenBrand').getDir()~'/img/news/'~new.getImage() %}
+                                    <img src={{url}} alt='{{new.getImage()}}'>
+                                </td>
+                                <td> {% if new.getActive() is same as(true) %} En-ligne {% else %} Hors-ligne {% endif %}  </td>
+                                <td> {{new.getDate().date|date("d-m-Y")}} </td>
+                                <td>
+                                    <a class="fas fa-eye" href ='{{app.session.get('choosenBrand').getUrl()}}news/details/?id={{new.getId()}}' target="_blank"></a>
+                                    <a class="fas fa-edit" href='{{path('newDetails',{'newIdSlug':new.getId()})}}'></a>
+                                    <button class="fas fa-times-circle" onclick="if (confirm('Etes vous sur de vouloir supprimer cette nouveauté ?')){ document.location.href ='{{path('newRemove',{'newId':new.getId()})}}'; }"></button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </body>
+            </table>
+        </div>
     </div>
-</div>
 
 {% endblock %}

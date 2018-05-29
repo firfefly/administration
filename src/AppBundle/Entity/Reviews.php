@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="reviews")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ReviewsRepository")
  */
-class Reviews
-{
+class Reviews {
+
     /**
      * @var int
      *
@@ -64,8 +64,7 @@ class Reviews
      */
     private $mark;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->date = new \DateTime("now");
     }
 
@@ -162,6 +161,4 @@ class Reviews
         $this->mark = $mark;
     }
 
-
 }
-

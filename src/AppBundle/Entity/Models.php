@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="models")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ModelsRepository")
  */
-class Models
-{
+class Models {
+
     /**
      * @var int
      *
@@ -55,17 +55,16 @@ class Models
      *
      * @Assert\File(mimeTypes={ "image/jpeg","image/png" })
 
-    private $image;
+      private $image;
 
-    function getImage() {
-        return $this->image;
-    }
+      function getImage() {
+      return $this->image;
+      }
 
-    function setImage($image) {
-        $this->image = $image;
-    }
-*/
-
+      function setImage($image) {
+      $this->image = $image;
+      }
+     */
 
     /**
      * @var string
@@ -152,7 +151,4 @@ class Models
         $this->properties = $properties;
     }
 
-
-
 }
-

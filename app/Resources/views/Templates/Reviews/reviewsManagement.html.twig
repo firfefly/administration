@@ -1,19 +1,17 @@
 {% extends 'Templates/base.html.twig' %}
 {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
 {% endblock %}
 {% block menu %}
     {{ parent() }}
     <h1 class="titre_form"> {% if app.session.get('choosenBrand') is not null %} Les avis {{app.session.get('choosenBrand').getName()}} {% endif %} </h1>
-<hr align="left" class="séparateur">
+    <hr align="left" class="séparateur">
 {% endblock %}
 {% block body %}
-
-<div class="row">
-    <div class="col-sm-12">
-        <button class="fas fas fa-plus" id="addButton" onclick="{ document.location.href ='{{path('reviewDetails',{'reviewIdSlug': 'null'})}}'; }"> Ajouter</button>
-        <table>
-            <body>
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="fas fas fa-plus" id="addButton" onclick="{ document.location.href ='{{path('reviewDetails',{'reviewIdSlug': 'null'})}}'; }"> Ajouter</button>
+            <table>
                 <tr>
                     <th> Texte </th>
                     <th> Qui ? </th>
@@ -51,9 +49,7 @@
                         </tr>
                     {% endfor %}
                 {% endif %}
-            </body>
-        </table>
+            </table>
+        </div>
     </div>
-</div>
-
 {% endblock %}

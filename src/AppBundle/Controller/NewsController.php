@@ -11,13 +11,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class NewsController extends Controller
-{
+class NewsController extends Controller {
+
     /**
-    * @Route("/news/", name="news")
-    */
-    public function displayAllNewsAction(Request $request)
-    {
+     * @Route("/news/", name="news")
+     */
+    public function displayAllNewsAction(Request $request) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -25,20 +24,19 @@ class NewsController extends Controller
         }
 
         $news = $this->getDoctrine()
-                    ->getManager($brand->getName())
-                    ->getRepository(News::class)
-                    ->findAll();
+                ->getManager($brand->getName())
+                ->getRepository(News::class)
+                ->findAll();
 
         return $this->render('Templates/News/newsManagement.html.twig', array(
-            'newsList' => $news,
+                    'newsList' => $news,
         ));
     }
 
     /**
-    * @Route("/news/newDetails/{newIdSlug}", name="newDetails")
-    */
-    public function newDetailsAction(Request $request, $newIdSlug)
-    {
+     * @Route("/news/newDetails/{newIdSlug}", name="newDetails")
+     */
+    public function newDetailsAction(Request $request, $newIdSlug) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -55,19 +53,19 @@ class NewsController extends Controller
         }
 
         $departmentsList = $this->getDoctrine()
-                    ->getManager($brand->getName())
-                    ->getRepository(Departments::class)
-                    ->findBy(array('active' => '1'));
+                ->getManager($brand->getName())
+                ->getRepository(Departments::class)
+                ->findBy(array('active' => '1'));
 
         $retrieveDepartmentsIdAndName = [];
 
-        foreach($departmentsList as $department) {
+        foreach ($departmentsList as $department) {
             $retrieveDepartmentsIdAndName[$department->getName() . '(' . $department->getCode() . ')'] = $department->getCode();
         }
 
         $form = $this->createForm(NewType::class, $new, array(
-               'departmentsIdAndName'   => $retrieveDepartmentsIdAndName
-                ));
+            'departmentsIdAndName' => $retrieveDepartmentsIdAndName
+        ));
 
         $lastImage = $new->getImage();
 
@@ -77,18 +75,17 @@ class NewsController extends Controller
             $new = $form->getData();
             $file = $new->getImage();
 
-            if($file === null) {
-                if($lastImage === null) {
+            if ($file === null) {
+                if ($lastImage === null) {
                     $errors = "Veuillez choisir une image !";
                     return $this->render("Templates/News/newDetails.html.twig", array(
-                        'form' => $form->createView(),
-                        'new' => $new,
-                        'errors' => $errors,
+                                'form' => $form->createView(),
+                                'new' => $new,
+                                'errors' => $errors,
                     ));
                 } else {
                     $new->setImage($lastImage);
                 }
-
             } else {
                 $dir = new ImageUpload('/img/news/');
                 $fileName = $dir->upload($brand, $file);
@@ -102,17 +99,15 @@ class NewsController extends Controller
         }
 
         return $this->render('Templates/News/newDetails.html.twig', array(
-            'form' => $form->createView(),
-            'new' => $new,
+                    'form' => $form->createView(),
+                    'new' => $new,
         ));
     }
 
-
     /**
-    * @Route("/news/newRemove/{newId}", name="newRemove")
-    */
-    public function removeNewsAction(Request $request, $newId)
-    {
+     * @Route("/news/newRemove/{newId}", name="newRemove")
+     */
+    public function removeNewsAction(Request $request, $newId) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -120,16 +115,15 @@ class NewsController extends Controller
         }
 
         $em = $this->getDoctrine()
-            ->getManager($brand->getName());
+                ->getManager($brand->getName());
 
         $new = $em->getRepository(News::class)
-            ->find($newId);
+                ->find($newId);
 
         $em->remove($new);
         $em->flush();
 
         return $this->redirectToRoute('news');
     }
-
 
 }

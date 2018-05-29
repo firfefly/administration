@@ -10,13 +10,12 @@ use AppBundle\Form\SliderType;
 use AppBundle\Services\ImageUpload;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class SlidersController extends Controller
-{
+class SlidersController extends Controller {
+
     /**
-    * @Route("/sliders/", name="sliders")
-    */
-    public function displaySlidersAction(Request $request)
-    {
+     * @Route("/sliders/", name="sliders")
+     */
+    public function displaySlidersAction(Request $request) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -24,20 +23,19 @@ class SlidersController extends Controller
         }
 
         $slidersList = $this->getDoctrine()
-                        ->getManager($brand->getName())
-                        ->getRepository(Sliders::class)
-                        ->findAll();
+                ->getManager($brand->getName())
+                ->getRepository(Sliders::class)
+                ->findAll();
 
         return $this->render('Templates/Sliders/slidersManagement.html.twig', array(
-            'slidersList' => $slidersList,
+                    'slidersList' => $slidersList,
         ));
     }
 
     /**
-    * @Route("/sliders/sliderDetails/{sliderIdSlug}", name="sliderDetails")
-    */
-    public function sliderDetailsAction(Request $request, $sliderIdSlug, ImageUpload $fileUploader)
-    {
+     * @Route("/sliders/sliderDetails/{sliderIdSlug}", name="sliderDetails")
+     */
+    public function sliderDetailsAction(Request $request, $sliderIdSlug, ImageUpload $fileUploader) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -46,9 +44,9 @@ class SlidersController extends Controller
 
         if ((int) $sliderIdSlug > 0) {
             $slider = $this->getDoctrine()
-                        ->getManager($brand->getName())
-                        ->getRepository(Sliders::class)
-                        ->find($sliderIdSlug);
+                    ->getManager($brand->getName())
+                    ->getRepository(Sliders::class)
+                    ->find($sliderIdSlug);
         } else {
             $slider = new Sliders();
         }
@@ -63,7 +61,7 @@ class SlidersController extends Controller
             $slider = $form->getData();
             $file = $slider->getImage();
 
-            if($file === null) {
+            if ($file === null) {
                 $slider->setImage($image);
             } else {
                 $dir = new ImageUpload('/img/slider/');
@@ -75,19 +73,17 @@ class SlidersController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('sliders');
-
         }
 
         return $this->render('Templates/Sliders/sliderDetails.html.twig', array(
-            'form' => $form->createView(),
+                    'form' => $form->createView(),
         ));
     }
 
     /**
-    * @Route("/sliders/sliderRemove/{sliderId}", name="sliderRemove")
-    */
-    public function removeSlidersAction(Request $request, $sliderId)
-    {
+     * @Route("/sliders/sliderRemove/{sliderId}", name="sliderRemove")
+     */
+    public function removeSlidersAction(Request $request, $sliderId) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -95,14 +91,15 @@ class SlidersController extends Controller
         }
 
         $em = $this->getDoctrine()
-            ->getManager($brand->getName());
+                ->getManager($brand->getName());
 
         $slider = $em->getRepository(Sliders::class)
-            ->find($sliderId);
+                ->find($sliderId);
 
         $em->remove($slider);
         $em->flush();
 
         return $this->redirectToRoute('sliders');
     }
+
 }

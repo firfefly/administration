@@ -1,3 +1,0 @@
-services:
-   system.session:
-       class: AppBundle\Services\Bag

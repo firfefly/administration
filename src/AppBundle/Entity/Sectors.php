@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="sectors")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SectorsRepository")
  */
-class Sectors
-{
+class Sectors {
+
     /**
      * @var int
      *
@@ -74,6 +74,4 @@ class Sectors
         $this->agency_id = $agencyId;
     }
 
-
 }
-

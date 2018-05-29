@@ -14,20 +14,19 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class NewType extends AbstractType
-{
+class NewType extends AbstractType {
+
     private $departmentsIdAndName;
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $this->departmentsIdAndName = $options['departmentsIdAndName'];
 
         $builder
                 ->add('department', ChoiceType::class, array(
-                        'label' => 'Département',
-                        'choices' => $this->departmentsIdAndName,
-                        'required' => false,
-                        ))
+                    'label' => 'Département',
+                    'choices' => $this->departmentsIdAndName,
+                    'required' => false,
+                ))
                 ->add('title', TextType::class, array('label' => 'Titre'))
                 ->add('caption', TextType::class, array('label' => 'Légende'))
                 ->add('text', TextareaType::class, array('label' => 'Texte'))
@@ -35,14 +34,14 @@ class NewType extends AbstractType
                 ->add('active', CheckboxType::class, array('label' => 'Visibilité', 'required' => false))
                 ->add('date', DateType::class, array('label' => 'Date', 'format' => 'dd-MM-yyyy', 'widget' => 'single_text'))
                 ->add('save', SubmitType::class, array('label' => 'Valider'))
-                ;
+        ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => News::class,
             'departmentsIdAndName' => null,
         ));
     }
+
 }

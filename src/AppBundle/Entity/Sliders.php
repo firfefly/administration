@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="sliders")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SlidersRepository")
  */
-class Sliders
-{
+class Sliders {
+
     /**
      * @var int
      *
@@ -235,6 +235,4 @@ class Sliders
         $this->actionText2 = $actionText2;
     }
 
-
 }
-

@@ -11,13 +11,12 @@ use Symfony\Component\Filesystem\Filesystem;
 use AppBundle\Services\ImageUpload;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class ModelsController extends Controller
-{
+class ModelsController extends Controller {
+
     /**
-    * @Route("/models/", name="models")
-    */
-    public function displayModelsAction(Request $request)
-    {
+     * @Route("/models/", name="models")
+     */
+    public function displayModelsAction(Request $request) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -25,21 +24,19 @@ class ModelsController extends Controller
         }
 
         $modelsList = $this->getDoctrine()
-                        ->getManager($brand->getName())
-                        ->getRepository(Models::class)
-                        ->findAll();
+                ->getManager($brand->getName())
+                ->getRepository(Models::class)
+                ->findAll();
 
         return $this->render('Templates/Models/modelsManagement.html.twig', array(
-            'modelsList' => $modelsList,
+                    'modelsList' => $modelsList,
         ));
     }
 
-
     /**
-    * @Route("/models/modelDetails/{modelIdSlug}", name="modelDetails")
-    */
-    public function modelDetailsAction(Request $request, $modelIdSlug)
-    {
+     * @Route("/models/modelDetails/{modelIdSlug}", name="modelDetails")
+     */
+    public function modelDetailsAction(Request $request, $modelIdSlug) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -48,9 +45,9 @@ class ModelsController extends Controller
 
         if ((int) $modelIdSlug > 0) {
             $model = $this->getDoctrine()
-                        ->getManager($brand->getName())
-                        ->getRepository(Models::class)
-                        ->find($modelIdSlug);
+                    ->getManager($brand->getName())
+                    ->getRepository(Models::class)
+                    ->find($modelIdSlug);
         } else {
             $model = new Models();
         }
@@ -60,82 +57,77 @@ class ModelsController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted())
-        {
+        if ($form->isSubmitted()) {
             $fileSystem = new Filesystem();
             $model = $form->getData();
             $file = $form['imageindir']->getData();
 
 
             $newModelTitle = strtolower($model->getTitle());
-            $newDir = '../../'.$brand->getDir().'/img/models/'.$newModelTitle.'/';
-            $previousDir = '../../'.$brand->getDir().'/img/models/'.$previousModelTitle.'/';
-            $test=0;
+            $newDir = '../../' . $brand->getDir() . '/img/models/' . $newModelTitle . '/';
+            $previousDir = '../../' . $brand->getDir() . '/img/models/' . $previousModelTitle . '/';
+            $test = 0;
             $exists = $fileSystem->exists($newDir);
 
-                if ($previousModelTitle !== $newModelTitle) {
-                    if ($exists === true) {
-                        return $this->render('Templates/Models/modelDetails.html.twig', array(
-                            'form' => $form->createView(),
-                            'error' => 'Ce dossier existe déjà. Changez le titre',
-                        ));
+            if ($previousModelTitle !== $newModelTitle) {
+                if ($exists === true) {
+                    return $this->render('Templates/Models/modelDetails.html.twig', array(
+                                'form' => $form->createView(),
+                                'error' => 'Ce dossier existe déjà. Changez le titre',
+                    ));
+                } else {
+                    if ($previousModelTitle !== '') {
+                        $test = 1;
+                        $fileSystem->mkdir($newDir, 0777);
+                        $this->moveFiles($previousDir, $newDir);
+                        $fileSystem->remove($previousDir);
                     } else {
-                        if ($previousModelTitle !== '') {
-                            $test = 1;
-                            $fileSystem->mkdir($newDir, 0777);
-                            $this->moveFiles($previousDir, $newDir);
-                            $fileSystem->remove($previousDir);
-                        } else {
-                            $fileSystem->mkdir($newDir, 0777);
-                        }
-
+                        $fileSystem->mkdir($newDir, 0777);
                     }
                 }
+            }
 
-                if ($file !== null) {
-                    $this->suppFilesInDir($newDir);
-                    $dir = new ImageUpload('/img/models/'.$newModelTitle.'/');
-                    $dir->upload($brand, $file);
-                } elseif ($test !='1') {
-                    $fileSystem->remove($newDir);
-                    return $this->render('Templates/Models/modelDetails.html.twig', array(
+            if ($file !== null) {
+                $this->suppFilesInDir($newDir);
+                $dir = new ImageUpload('/img/models/' . $newModelTitle . '/');
+                $dir->upload($brand, $file);
+            } elseif ($test != '1') {
+                $fileSystem->remove($newDir);
+                return $this->render('Templates/Models/modelDetails.html.twig', array(
                             'form' => $form->createView(),
                             'error' => 'Vous devez choisir une image lorsque vous créez un nouveau model',
-                        ));
-                }
+                ));
+            }
 
             $em = $this->getDoctrine()->getManager($brand->getName());
             $em->persist($model);
             $em->flush();
 
             return $this->redirectToRoute('models');
-
         }
 
         return $this->render('Templates/Models/modelDetails.html.twig', array(
-            'form' => $form->createView(),
+                    'form' => $form->createView(),
         ));
     }
 
-    public function moveFiles($directory, $newDirectory)
-    {
-       $rep=opendir($directory);
+    public function moveFiles($directory, $newDirectory) {
+        $rep = opendir($directory);
         while ($file = readdir($rep)) {
-            if($file != '..' && $file !='.' && $file !='') {
-                if(!is_dir($file)) {
-                    copy($directory.$file, $newDirectory.$file);
+            if ($file != '..' && $file != '.' && $file != '') {
+                if (!is_dir($file)) {
+                    copy($directory . $file, $newDirectory . $file);
                 }
             }
         }
         closedir($rep);
     }
 
-    public function displayFilesByDirectory($directory)
-    {
-        $rep=opendir($directory);
+    public function displayFilesByDirectory($directory) {
+        $rep = opendir($directory);
         while ($file = readdir($rep)) {
-            if($file != '..' && $file !='.' && $file !='') {
-                if(!is_dir($file)) {
+            if ($file != '..' && $file != '.' && $file != '') {
+                if (!is_dir($file)) {
                     closedir($rep);
                     return $file;
                 }
@@ -143,25 +135,22 @@ class ModelsController extends Controller
         }
     }
 
-    public function suppFilesInDir($directory)
-    {
+    public function suppFilesInDir($directory) {
         $dir = $directory;
         if (is_dir($dir)) {
             if ($dh = opendir($dir)) {
                 while (($file = readdir($dh)) !== false) {
-                    @unlink($dir.$file);
+                    @unlink($dir . $file);
                 }
                 closedir($dh);
             }
         }
     }
 
-
     /**
-    * @Route("/models/modelRemove/{modelId}", name="modelRemove")
-    */
-    public function removeModelsAction(Request $request, $modelId)
-    {
+     * @Route("/models/modelRemove/{modelId}", name="modelRemove")
+     */
+    public function removeModelsAction(Request $request, $modelId) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -169,17 +158,15 @@ class ModelsController extends Controller
         }
 
         $em = $this->getDoctrine()
-            ->getManager($brand->getName());
+                ->getManager($brand->getName());
 
         $model = $em->getRepository(Models::class)
-                    ->find($modelId);
+                ->find($modelId);
 
         $em->remove($model);
         $em->flush();
 
         return $this->redirectToRoute('models');
     }
-
-
 
 }

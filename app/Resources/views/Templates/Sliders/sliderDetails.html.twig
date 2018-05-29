@@ -1,66 +1,62 @@
 {% extends 'Templates/base.html.twig' %}
 {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
 {% endblock %}
 {% block menu %}
     {{ parent() }}
     <h1 class="titre_form"> {% if app.session.get('choosenBrand') is not null %} Les sliders {{app.session.get('choosenBrand').getName()}} {% endif %} </h1>
     <hr align="left" class="séparateur">
-
 {% endblock %}
-
 {% block body %}
-<div class="row">
-    <div class="col-sm-12">
-        <form method="POST" enctype="multipart/form-data">
-            <table id="formTab">
-                <tr>
-                    <td> {{ form_label (form.image) }} </td>
-                    <td> {{ form_widget (form.image) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.alt) }} </td>
-                    <td> {{ form_widget (form.alt) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.slogan) }} </td>
-                    <td> {{ form_widget (form.slogan) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.title) }} </td>
-                    <td> {{ form_widget (form.title) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.text) }} </td>
-                    <td> {{ form_widget (form.text) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.actionLink1) }} </td>
-                    <td> {{ form_widget (form.actionLink1) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.actionText1) }} </td>
-                    <td> {{ form_widget (form.actionText1) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.actionLink2) }} </td>
-                    <td> {{ form_widget (form.actionLink2) }} </td>
-                </tr>
-                <tr>
-                    <td> {{ form_label (form.actionText2) }} </td>
-                    <td> {{ form_widget (form.actionText2) }} </td>
-                </tr>
-            </table>
-            <div id="formButton">
-                {{ form_widget(form.save) }}
-                <button type="button" id="backButton" onclick="document.location.replace('{{path('sliders')}}');"> Retour</button>
-            </div>
-            {{ form_rest(form) }}
-            {{ form_end(form) }}
-        </form>
-
-
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="POST" enctype="multipart/form-data">
+                <table id="formTab">
+                    <tr>
+                        <td> {{ form_label (form.image) }} </td>
+                        <td> {{ form_widget (form.image) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.alt) }} </td>
+                        <td> {{ form_widget (form.alt) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.slogan) }} </td>
+                        <td> {{ form_widget (form.slogan) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.title) }} </td>
+                        <td> {{ form_widget (form.title) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.text) }} </td>
+                        <td> {{ form_widget (form.text) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.actionLink1) }} </td>
+                        <td> {{ form_widget (form.actionLink1) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.actionText1) }} </td>
+                        <td> {{ form_widget (form.actionText1) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.actionLink2) }} </td>
+                        <td> {{ form_widget (form.actionLink2) }} </td>
+                    </tr>
+                    <tr>
+                        <td> {{ form_label (form.actionText2) }} </td>
+                        <td> {{ form_widget (form.actionText2) }} </td>
+                    </tr>
+                </table>
+                <div id="formButton">
+                    {{ form_widget(form.save) }}
+                    <button type="button" id="backButton" onclick="document.location.replace('{{path('sliders')}}');"> Retour</button>
+                </div>
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}
 

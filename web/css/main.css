@@ -66,24 +66,6 @@ h1 {
     font-size: 1.5em;
 }
 
-/*.col-md-9 h1
-{
-    text-align: left;
-    font-weight: bold;
-
-}*/
-/*.séparateur
-{
-    margin-top: 0px;
-    margin-bottom: 20px;
-
-    border: 0;
-    border-top: 2px solid #008407;
-    width: 50%;
-}*/
-
-/*Menu*/
-
 header
 {
     top : 0;
@@ -98,6 +80,8 @@ header
     padding-top: 1em;
 }
 
+/*Menu*/
+
 #barre_menu
 {
     /* padding: 0.3em; */
@@ -107,7 +91,7 @@ header
     width: auto;
     background-color: #525252;
     /* vertical-align:  middle; */
-    }
+}
 
 #barre_menu li {
 }
@@ -269,7 +253,7 @@ button
 {
     text-align: center;
     margin: auto;
-     display: block;
+    display: block;
     margin : 2em auto;
 }
 
@@ -377,40 +361,3 @@ img
     max-width: 20em;
     max-height: 20em;
 }
-
-
-
-/*footer
-{
-    background:#ccc;
-    position:absolute;
-    bottom:0;
-    width:100%;
-    padding-top:50px;
-    height:50px;
-}*/
-
-
-
-/* Pour les messages d'erreurs
-p.erreur {
-   text-align: center;
-   color: red;
-   font-weight: bold;
-}
-
-form
-{
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.Tableau {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.Tableau table{
-    width: 100%;
-}*/

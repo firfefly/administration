@@ -11,13 +11,12 @@ use AppBundle\Form\DepartmentEditType;
 use AppBundle\Services\ImageUpload;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class DepartmentsController extends Controller
-{
+class DepartmentsController extends Controller {
+
     /**
-    * @Route("/departments/", name="departments")
-    */
-    public function selectDepartmentAction(Request $request)
-    {
+     * @Route("/departments/", name="departments")
+     */
+    public function selectDepartmentAction(Request $request) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -25,56 +24,53 @@ class DepartmentsController extends Controller
         }
 
         $activeDepartmentsList = $this->getDoctrine()
-                                ->getManager($brand->getName())
-                                ->getRepository(Departments::class)
-                                ->findBy(array('active' => '1'), array('code' => 'ASC'));
+                ->getManager($brand->getName())
+                ->getRepository(Departments::class)
+                ->findBy(array('active' => '1'), array('code' => 'ASC'));
 
         $retrieveActiveDepartmentsNameAndCode = [];
 
-        foreach($activeDepartmentsList as $department) {
+        foreach ($activeDepartmentsList as $department) {
             $retrieveActiveDepartmentsNameAndCode[$department->getName() . '(' . $department->getCode() . ')'] = $department->getCode();
         }
 
         $inactiveDepartmentsList = $this->getDoctrine()
-                                    ->getManager($brand->getName())
-                                    ->getRepository(Departments::class)
-                                    ->findBy(array('active' => '0'),array('code' => 'ASC'));
+                ->getManager($brand->getName())
+                ->getRepository(Departments::class)
+                ->findBy(array('active' => '0'), array('code' => 'ASC'));
 
         $retrieveInactiveDepartmentsNameAndCode = [];
 
-        foreach($inactiveDepartmentsList as $department) {
+        foreach ($inactiveDepartmentsList as $department) {
             $retrieveInactiveDepartmentsNameAndCode[$department->getName() . '(' . $department->getCode() . ')'] = $department->getCode();
         }
 
         $form = $this->createForm(DepartmentSelectType::class, null, array(
-                'retrieveActiveDepartmentsNameAndCode'   => $retrieveActiveDepartmentsNameAndCode,
-                'retrieveInactiveDepartmentsNameAndCode'   => $retrieveInactiveDepartmentsNameAndCode,
-                ));
+            'retrieveActiveDepartmentsNameAndCode' => $retrieveActiveDepartmentsNameAndCode,
+            'retrieveInactiveDepartmentsNameAndCode' => $retrieveInactiveDepartmentsNameAndCode,
+        ));
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted())
-        {
+        if ($form->isSubmitted()) {
             $selectedDepartmentCode = $form->getData()['code'];
             $department = $this->getDoctrine()
-                        ->getManager($brand->getName())
-                        ->getRepository(Departments::class)
-                        ->findOneByCode($selectedDepartmentCode);
+                    ->getManager($brand->getName())
+                    ->getRepository(Departments::class)
+                    ->findOneByCode($selectedDepartmentCode);
 
-            return $this->redirectToRoute('departmentDetails',array('codeDpt' => $selectedDepartmentCode));
+            return $this->redirectToRoute('departmentDetails', array('codeDpt' => $selectedDepartmentCode));
         }
 
         return $this->render('Templates/Departments/departmentsManagement.html.twig', array(
-            'form' => $form->createView(),
+                    'form' => $form->createView(),
         ));
     }
 
-
     /**
-    * @Route("/departments/departmentDetails/{codeDpt}", name="departmentDetails")
-    */
-    public function departmentDetailsAction(Request $request, $codeDpt)
-    {
+     * @Route("/departments/departmentDetails/{codeDpt}", name="departmentDetails")
+     */
+    public function departmentDetailsAction(Request $request, $codeDpt) {
         $session = new Session();
         $brand = $session->get('choosenBrand');
         if ($brand === null) {
@@ -82,9 +78,9 @@ class DepartmentsController extends Controller
         }
 
         $department = $this->getDoctrine()
-                        ->getManager($brand->getName())
-                        ->getRepository(Departments::class)
-                        ->findOneByCode($codeDpt);
+                ->getManager($brand->getName())
+                ->getRepository(Departments::class)
+                ->findOneByCode($codeDpt);
 
 
         $form = $this->createForm(DepartmentEditType::class, $department);
@@ -93,8 +89,7 @@ class DepartmentsController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted())
-        {
+        if ($form->isSubmitted()) {
             $department = $form->getData();
             $file = $department->getImage();
 
@@ -113,13 +108,9 @@ class DepartmentsController extends Controller
         }
 
         return $this->render('Templates/Departments/departmentDetails.html.twig', array(
-            'form' => $form->createView(),
-            'department' => $department,
+                    'form' => $form->createView(),
+                    'department' => $department,
         ));
-
-
     }
-
-
 
 }

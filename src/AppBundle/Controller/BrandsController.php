@@ -9,17 +9,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\BrandType;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class BrandsController extends Controller
-{
+class BrandsController extends Controller {
+
     /**
-    * @Route("/", name="index")
-    */
-    public function SelectABrandAction(Request $request)
-    {
+     * @Route("/", name="index")
+     */
+    public function SelectABrandAction(Request $request) {
         $session = new Session();
 
         $form = $this->createForm(BrandType::class, null, array(
-                ));
+        ));
 
         $form->handleRequest($request);
 
@@ -30,14 +29,14 @@ class BrandsController extends Controller
                     ->getRepository(Brands::class)
                     ->find($choosenBrand);
             $session->set('choosenBrand', $brand);
-            
+
             return $this->render('Templates/Index/index.html.twig', array(
-                'form' => $form->createView(),
+                        'form' => $form->createView(),
             ));
         }
         return $this->render('Templates/Index/index.html.twig', array(
-                'form' => $form->createView(),
-            ));
-
+                    'form' => $form->createView(),
+        ));
     }
+
 }

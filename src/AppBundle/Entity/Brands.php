@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="brands")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BrandsRepository")
  */
-class Brands
-{
+class Brands {
+
     /**
      * @var int
      *
@@ -40,8 +40,7 @@ class Brands
      * Get id
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -92,5 +91,5 @@ class Brands
     function setDir($dir) {
         $this->dir = $dir;
     }
-}
 
+}

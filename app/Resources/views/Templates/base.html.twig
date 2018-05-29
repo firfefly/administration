@@ -1,71 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Administration{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-theme.min.css')}}" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
-    {% endblock %}
-    {% block javascripts %}
-        <script type="text/javascript" src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/jquery-ui.js')}}"></script>
-        <script>
-            jQuery(function () {
-                a = document.getElementsByClassName('navMenu');
-
-                for(i=0;i<a.length;i++) {
-                    if (a[i].getAttribute("href") === document.location.pathname) {
-                        $('.navMenu').eq(i).parent().addClass('active');
-                    }
-                }});
-        </script>
-    {% endblock %}
-</head>
-{% block menu %}
-<header>
-    <nav>
-        <h1 class="welcome"> Bienvenue sur l'application d'administration des sites du groupe Avenir </h1>
-        <ul>
-            <li class="management"><a href="{{path('fos_user_change_password')}}"><span class="fas fa-user-circle"></span> Profil</a></li>
-            <li class="logout"><a  href="{{path('fos_user_security_logout')}}"><span class="fas fa-sign-out-alt"></span> Déconnexion</a></li>
-        </ul>
-            <div id="barre_menu">
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Administration{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-theme.min.css')}}" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}" />
+        {% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+            <script type="text/javascript" src="{{asset('js/jquery-ui.js')}}"></script>
+            <script>
+                jQuery(function () {
+                    a = document.getElementsByClassName('navMenu');
+                    for(i=0;i<a.length;i++) {
+                        if (a[i].getAttribute("href") === document.location.pathname) {
+                            $('.navMenu').eq(i).parent().addClass('active');
+                        }
+                    }});
+            </script>
+        {% endblock %}
+    </head>
+    {% block menu %}
+        <header>
+            <nav>
+                <h1 class="welcome"> Bienvenue sur l'application d'administration des sites du groupe Avenir </h1>
                 <ul>
-                    {% if app.session.get('choosenBrand') is not same as(null) %}
-                        <li><a class="navMenu" href="{{path('index')}}"> Accueil</a></li>
-                        {% if is_granted('ROLE_COMMUNICATION') %}
-
-                            <li><a class="navMenu" href="{{path('news')}}"> Les actualités</a></li>
-                            <li><a class="navMenu" href="{{path('sliders')}}"> Les sliders</a></li>
-                            <li><a class="navMenu" href="{{path('models')}}"> Les réalisations</a></li>
-                            <li><a class="navMenu" href="{{path('reviews')}}"> Les témoignages</a></li>
-                        {% endif %}
-                        {% if is_granted('ROLE_COMMERCIAL') %}
-                            <li><a class="navMenu" href="{{path('agencies')}}"> Les agences</a></li>
-                            <li><a class="navMenu" href="{{path('departments')}}"> Les départements</a></li>
-                            <li><a class="navMenu" href="{{path('sectors')}}"> Les secteurs</a></li>
-                        {% endif %}
-                    {% else %}
-                        <li><a class="navMenu" href="{{path('index')}}"> Accueil</a></li>
-                    {% endif %}
+                    <li class="management"><a href="{{path('fos_user_change_password')}}"><span class="fas fa-user-circle"></span> Profil</a></li>
+                    <li class="logout"><a  href="{{path('fos_user_security_logout')}}"><span class="fas fa-sign-out-alt"></span> Déconnexion</a></li>
                 </ul>
-            </div>
-
-    </nav>
-</header>
-{% endblock %}
-{% block body %}
-<body class="container-fluid">
-</body>
-{% endblock %}
-{% block footer %}
-    <footer class="footer">
-
-    </footer>
-{% endblock %}
+                <div id="barre_menu">
+                    <ul>
+                        {% if app.session.get('choosenBrand') is not same as(null) %}
+                            <li><a class="navMenu" href="{{path('index')}}"> Accueil</a></li>
+                            {% if is_granted('ROLE_COMMUNICATION') %}
+                                <li><a class="navMenu" href="{{path('news')}}"> Les actualités</a></li>
+                                <li><a class="navMenu" href="{{path('sliders')}}"> Les sliders</a></li>
+                                <li><a class="navMenu" href="{{path('models')}}"> Les réalisations</a></li>
+                                <li><a class="navMenu" href="{{path('reviews')}}"> Les témoignages</a></li>
+                            {% endif %}
+                            {% if is_granted('ROLE_COMMERCIAL') %}
+                                <li><a class="navMenu" href="{{path('agencies')}}"> Les agences</a></li>
+                                <li><a class="navMenu" href="{{path('departments')}}"> Les départements</a></li>
+                                <li><a class="navMenu" href="{{path('sectors')}}"> Les secteurs</a></li>
+                            {% endif %}
+                        {% else %}
+                            <li><a class="navMenu" href="{{path('index')}}"> Accueil</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    {% endblock %}
+    {% block body %}
+        <body class="container-fluid">
+        </body>
+    {% endblock %}
+    {% block footer %}
+        <footer class="footer">
+        </footer>
+    {% endblock %}
 </html>

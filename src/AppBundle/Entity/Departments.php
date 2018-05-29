@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="departments")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DepartmentsRepository")
  */
-class Departments
-{
+class Departments {
+
     /**
      * @var int
      *
@@ -68,8 +68,7 @@ class Departments
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -189,5 +188,5 @@ class Departments
     public function setActive($active) {
         $this->active = $active;
     }
-}
 
+}

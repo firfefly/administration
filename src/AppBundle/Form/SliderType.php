@@ -11,10 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class SliderType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+class SliderType extends AbstractType {
+
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
                 ->add('image', FileType::class, array('data_class' => null, 'required' => false))
                 ->add('alt', TextType::class)
@@ -26,13 +25,13 @@ class SliderType extends AbstractType
                 ->add('actionLink2', TextType::class, array('label' => 'Lien du bouton 2'))
                 ->add('actionText2', TextType::class, array('label' => 'Texte du bouton 2'))
                 ->add('save', SubmitType::class, array('label' => 'Valider'))
-                ;
+        ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => Sliders::class,
         ));
     }
+
 }
