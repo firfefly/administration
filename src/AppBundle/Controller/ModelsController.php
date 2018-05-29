@@ -66,7 +66,7 @@ class ModelsController extends Controller {
             $newModelTitle = strtolower($model->getTitle());
             $newDir = '../../' . $brand->getDir() . '/img/models/' . $newModelTitle . '/';
             $previousDir = '../../' . $brand->getDir() . '/img/models/' . $previousModelTitle . '/';
-            $test = 0;
+            $isEmpty = FALSE;
             $exists = $fileSystem->exists($newDir);
 
             if ($previousModelTitle !== $newModelTitle) {
@@ -77,7 +77,7 @@ class ModelsController extends Controller {
                     ));
                 } else {
                     if ($previousModelTitle !== '') {
-                        $test = 1;
+                        $isEmpty = TRUE;
                         $fileSystem->mkdir($newDir, 0777);
                         $this->moveFiles($previousDir, $newDir);
                         $fileSystem->remove($previousDir);
@@ -91,7 +91,7 @@ class ModelsController extends Controller {
                 $this->suppFilesInDir($newDir);
                 $dir = new ImageUpload('/img/models/' . $newModelTitle . '/');
                 $dir->upload($brand, $file);
-            } elseif ($test != '1') {
+            } elseif ($isEmpty !== TRUE) {
                 $fileSystem->remove($newDir);
                 return $this->render('Templates/Models/modelDetails.html.twig', array(
                             'form' => $form->createView(),

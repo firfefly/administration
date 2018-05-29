@@ -32,7 +32,7 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    {% set url = 'http://localhost/'~app.session.get('choosenBrand').getDir()~'/img/news/'~new.getImage() %}
+                                    {% set url = app.session.get('choosenBrand').getUrl()~'/img/news/'~new.getImage() %}
                                     <img src={{url}} alt='{{new.getImage()}}'>
                                 </td>
                                 <td> {% if new.getActive() is same as(true) %} En-ligne {% else %} Hors-ligne {% endif %}  </td>

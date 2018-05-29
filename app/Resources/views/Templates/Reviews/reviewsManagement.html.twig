@@ -32,11 +32,11 @@
                             </td>
                             <td> {{ review.getWho() }} </td>
                             <td>
-                                {% set url1 = 'http://localhost/'~app.session.get('choosenBrand').getDir()~'/img/reviews/'~review.getImage1() %}
+                                {% set url1 = app.session.get('choosenBrand').getUrl()~'/img/reviews/'~review.getImage1() %}
                                 <img src={{url1}} alt='{{review.getImage1()}}'>
                             </td>
                             <td>
-                                {% set url2 = 'http://localhost/'~app.session.get('choosenBrand').getDir()~'/img/reviews/'~review.getImage2() %}
+                                {% set url2 = app.session.get('choosenBrand').getUrl()~'/img/reviews/'~review.getImage2() %}
                                 <img src={{url2}} alt='{{review.getImage2()}}'>
                             </td>
                             <td> {{review.getDate().date|date("d-m-Y")}} </td>

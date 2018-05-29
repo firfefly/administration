@@ -28,7 +28,7 @@
                         {% for slider in slidersList %}
                             <tr>
                                 <td>
-                                    {% set url = 'http://localhost/'~app.session.get('choosenBrand').getDir()~'/img/slider/'~slider.getImage() %}
+                                    {% set url = app.session.get('choosenBrand').getUrl()~'/img/slider/'~slider.getImage() %}
                                     <img src={{url}} alt='{{slider.getImage()}}'>
                                 </td>
                                 <td> {{ slider.getAlt() }} </td>
